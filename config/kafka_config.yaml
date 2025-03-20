@@ -1,0 +1,47 @@
+kafka:
+  bootstrap_servers:
+    - "localhost:29092"
+  consumer_group_id: "amazon-recommendation-service"
+  auto_offset_reset: "earliest"
+  enable_auto_commit: true
+  # Define Kafka topics
+  topics:
+    # Input streams
+    user_events: "amazon-user-events"
+    product_views: "amazon-product-views" 
+    purchases: "amazon-purchases"
+    reviews: "amazon-reviews"
+    
+    # Processing streams
+    recommendation_requests: "amazon-recommendation-requests"
+    recommendation_responses: "amazon-recommendation-responses"
+    
+    # Model streams
+    model_updates: "amazon-model-updates"
+    model_metrics: "amazon-model-metrics"
+    
+    # Monitoring streams
+    system_metrics: "amazon-system-metrics"
+    data_drift: "amazon-data-drift"
+    
+  # Producer settings
+  producer:
+    linger_ms: 10
+    batch_size: 16384
+    acks: "all"
+    retries: 3
+    request_timeout_ms: 30000
+  
+  # Consumer settings
+  consumer:
+    max_poll_records: 500
+    max_poll_interval_ms: 300000
+    session_timeout_ms: 30000
+    heartbeat_interval_ms: 10000
+    
+  # Stream processor settings
+  stream_processor:
+    user_event_window_minutes: 30
+    recommendation_cache_size: 10000
+    update_interval_seconds: 60
+    drift_detection_threshold: 0.2 

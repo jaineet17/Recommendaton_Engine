@@ -1,0 +1,38 @@
+2025-03-20 13:35:14,992 - production_test - INFO - Models to test: ['lightgcn', 'ncf', 'simple_mf', 'content', 'ensemble']
+2025-03-20 13:35:14,992 - production_test - INFO - ================================================================================
+2025-03-20 13:35:14,992 - production_test - INFO - STARTING PRODUCTION TEST FOR RECOMMENDATION ENGINE
+2025-03-20 13:35:14,992 - production_test - INFO - Target API: http://localhost:5050/api
+2025-03-20 13:35:14,992 - production_test - INFO - Testing models: ['lightgcn', 'ncf', 'simple_mf', 'content', 'ensemble']
+2025-03-20 13:35:14,992 - production_test - INFO - Users: 1000, Concurrency: 10, Duration: 60s per model
+2025-03-20 13:35:14,993 - production_test - INFO - ================================================================================
+2025-03-20 13:35:29,997 - production_test - ERROR - API health check failed: HTTPConnectionPool(host='localhost', port=5050): Read timed out. (read timeout=15)
+2025-03-20 13:35:29,998 - production_test - ERROR - API is not healthy. Aborting test.
+2025-03-20 13:49:08,038 - production_test - INFO - Models to test: ['lightgcn', 'ncf', 'simple_mf', 'content', 'ensemble']
+2025-03-20 13:49:08,039 - production_test - INFO - ================================================================================
+2025-03-20 13:49:08,039 - production_test - INFO - STARTING PRODUCTION TEST FOR RECOMMENDATION ENGINE
+2025-03-20 13:49:08,039 - production_test - INFO - Target API: http://localhost:5050/api
+2025-03-20 13:49:08,039 - production_test - INFO - Testing models: ['lightgcn', 'ncf', 'simple_mf', 'content', 'ensemble']
+2025-03-20 13:49:08,039 - production_test - INFO - Users: 100, Concurrency: 5, Duration: 30s per model
+2025-03-20 13:49:08,039 - production_test - INFO - ================================================================================
+2025-03-20 13:49:23,042 - production_test - ERROR - API health check failed: HTTPConnectionPool(host='localhost', port=5050): Read timed out. (read timeout=15)
+2025-03-20 13:49:23,042 - production_test - ERROR - API is not healthy. Aborting test.
+2025-03-20 13:57:50,112 - production_test - INFO - Models to test: ['lightgcn', 'ncf', 'simple_mf', 'content', 'ensemble']
+2025-03-20 13:57:50,113 - production_test - INFO - ================================================================================
+2025-03-20 13:57:50,113 - production_test - INFO - STARTING PRODUCTION TEST FOR RECOMMENDATION ENGINE
+2025-03-20 13:57:50,113 - production_test - INFO - Target API: http://localhost:5050/api
+2025-03-20 13:57:50,113 - production_test - INFO - Testing models: ['lightgcn', 'ncf', 'simple_mf', 'content', 'ensemble']
+2025-03-20 13:57:50,113 - production_test - INFO - Users: 100, Concurrency: 5, Duration: 30s per model
+2025-03-20 13:57:50,113 - production_test - INFO - ================================================================================
+2025-03-20 13:57:50,113 - production_test - INFO - Attempting to connect to API via multiple health endpoints...
+2025-03-20 13:57:50,113 - production_test - INFO - Trying endpoint: http://localhost:5050/api/health
+2025-03-20 13:57:55,115 - production_test - WARNING - Failed to connect to http://localhost:5050/api/health: HTTPConnectionPool(host='localhost', port=5050): Read timed out. (read timeout=5)
+2025-03-20 13:57:55,115 - production_test - INFO - Trying endpoint: http://localhost:5050/health
+2025-03-20 13:58:00,118 - production_test - WARNING - Failed to connect to http://localhost:5050/health: HTTPConnectionPool(host='localhost', port=5050): Read timed out. (read timeout=5)
+2025-03-20 13:58:00,118 - production_test - INFO - Trying endpoint: http://localhost:5050/api/health
+2025-03-20 13:58:05,120 - production_test - WARNING - Failed to connect to http://localhost:5050/api/health: HTTPConnectionPool(host='localhost', port=5050): Read timed out. (read timeout=5)
+2025-03-20 13:58:05,120 - production_test - INFO - Trying endpoint: http://localhost:5050/health
+2025-03-20 13:58:10,122 - production_test - WARNING - Failed to connect to http://localhost:5050/health: HTTPConnectionPool(host='localhost', port=5050): Read timed out. (read timeout=5)
+2025-03-20 13:58:10,122 - production_test - INFO - Trying endpoint: http://localhost:5050/api/health
+2025-03-20 13:58:15,125 - production_test - WARNING - Failed to connect to http://localhost:5050/api/health: HTTPConnectionPool(host='localhost', port=5050): Read timed out. (read timeout=5)
+2025-03-20 13:58:15,128 - production_test - ERROR - Failed to connect to API via any of the attempted endpoints
+2025-03-20 13:58:15,128 - production_test - ERROR - API is not healthy. Aborting test.

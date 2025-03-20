@@ -1,0 +1,867 @@
+2025-03-19 11:21:44,913 - load_test - INFO - ================================================================================
+2025-03-19 11:21:44,913 - load_test - INFO - STARTING LARGE-SCALE LOAD TEST FOR RECOMMENDATION ENGINE
+2025-03-19 11:21:44,913 - load_test - INFO - Target: http://localhost:5050/api
+2025-03-19 11:21:44,913 - load_test - INFO - Users: 5000, Products: 2000, Interactions: 50000
+2025-03-19 11:21:44,913 - load_test - INFO - Concurrency: 20, Duration: 60 seconds
+2025-03-19 11:21:44,913 - load_test - INFO - ================================================================================
+2025-03-19 11:21:44,915 - load_test - ERROR - API health check failed: HTTPConnectionPool(host='localhost', port=5050): Max retries exceeded with url: /api/health (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x131de8f50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-19 11:21:44,915 - load_test - ERROR - API is not healthy. Aborting test.
+2025-03-19 11:22:28,238 - load_test - INFO - ================================================================================
+2025-03-19 11:22:28,238 - load_test - INFO - STARTING LARGE-SCALE LOAD TEST FOR RECOMMENDATION ENGINE
+2025-03-19 11:22:28,238 - load_test - INFO - Target: http://localhost:5050/api
+2025-03-19 11:22:28,238 - load_test - INFO - Users: 5000, Products: 2000, Interactions: 50000
+2025-03-19 11:22:28,238 - load_test - INFO - Concurrency: 20, Duration: 60 seconds
+2025-03-19 11:22:28,238 - load_test - INFO - ================================================================================
+2025-03-19 11:22:28,241 - load_test - INFO - API Health: Healthy
+2025-03-19 11:22:28,241 - load_test - INFO - Models loaded: ['ncf', 'lightgcn']
+2025-03-19 11:22:28,242 - load_test - ERROR - Error checking prometheus: HTTPConnectionPool(host='localhost', port=19090): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11b64b440>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-19 11:22:28,254 - load_test - INFO - Grafana Status: Available
+2025-03-19 11:22:28,369 - load_test - INFO - Jenkins Status: Unavailable
+2025-03-19 11:22:28,370 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 11:22:28,370 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 11:22:28,371 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]> returned error 61. Disconnecting.
+2025-03-19 11:22:28,371 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 11:22:28,371 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 11:22:28,371 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]> returned error 61. Disconnecting.
+2025-03-19 11:22:28,371 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 11:22:28,371 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv4 ('127.0.0.1', 29092)]>: connecting to localhost:29092 [('127.0.0.1', 29092) IPv4]
+2025-03-19 11:22:28,371 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv4 ('127.0.0.1', 29092)]> returned error 61. Disconnecting.
+2025-03-19 11:22:28,371 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv4 ('127.0.0.1', 29092)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 11:22:28,371 - load_test - ERROR - Kafka check failed: NoBrokersAvailable
+2025-03-19 11:22:28,371 - load_test - INFO - Kafka Status: Unavailable
+2025-03-19 11:22:28,371 - load_test - INFO - Generating 5000 synthetic users...
+2025-03-19 11:22:28,372 - load_test - INFO - Generated 5000 users
+2025-03-19 11:22:28,372 - load_test - INFO - Generating 2000 synthetic products...
+2025-03-19 11:22:28,374 - load_test - INFO - Generated 2000 products
+2025-03-19 11:22:28,374 - load_test - INFO - Generating 50000 synthetic interactions...
+2025-03-19 11:22:31,087 - load_test - INFO - Generated 50000 interactions
+2025-03-19 11:22:36,108 - load_test - INFO - Feedback loop test: FAIL
+2025-03-19 11:22:36,108 - load_test - INFO - No observable change in recommendations after interaction
+2025-03-19 11:22:36,109 - load_test - INFO - Starting load test with 20 concurrent users for 60 seconds
+2025-03-19 11:23:36,146 - load_test - INFO - ================================================================================
+2025-03-19 11:23:36,146 - load_test - INFO - LOAD TEST RESULTS
+2025-03-19 11:23:36,146 - load_test - INFO - ================================================================================
+2025-03-19 11:23:36,146 - load_test - INFO - Test Duration: 60.02 seconds
+2025-03-19 11:23:36,146 - load_test - INFO - Total Requests: 12840
+2025-03-19 11:23:36,146 - load_test - INFO - Successful Requests: 4460
+2025-03-19 11:23:36,146 - load_test - INFO - Success Rate: 34.74%
+2025-03-19 11:23:36,146 - load_test - INFO - Error Rate: 65.26%
+2025-03-19 11:23:36,146 - load_test - INFO - Throughput: 74.31 requests/second
+2025-03-19 11:23:36,146 - load_test - INFO - Average Response Time: 0.007 seconds
+2025-03-19 11:23:36,146 - load_test - INFO - Median Response Time (P50): 0.006 seconds
+2025-03-19 11:23:36,147 - load_test - INFO - 95th Percentile Response Time: 0.010 seconds
+2025-03-19 11:23:36,147 - load_test - INFO - 99th Percentile Response Time: 0.030 seconds
+2025-03-19 11:23:36,147 - load_test - INFO - Min Response Time: 0.002 seconds
+2025-03-19 11:23:36,147 - load_test - INFO - Max Response Time: 0.074 seconds
+2025-03-19 11:23:36,147 - load_test - INFO - Peak CPU Usage: 32.8%
+2025-03-19 11:23:36,147 - load_test - INFO - Peak Memory Usage: 79.2%
+2025-03-19 11:23:36,147 - load_test - INFO - Recommendation Diversity: 0.21
+2025-03-19 11:23:36,147 - load_test - INFO - Catalog Coverage: 0.19
+2025-03-19 11:23:36,147 - load_test - INFO - Recommendation Personalization: 0.99
+2025-03-19 11:23:36,147 - load_test - INFO - ================================================================================
+2025-03-19 11:23:36,147 - load_test - INFO - Generating performance charts...
+2025-03-19 11:23:36,919 - load_test - INFO - Performance charts saved to load_test_results/load_test_performance.png
+2025-03-19 11:23:36,926 - load_test - INFO - Test results exported to CSV files in load_test_results
+2025-03-19 11:23:36,926 - load_test - INFO - ================================================================================
+2025-03-19 11:23:36,926 - load_test - INFO - LOAD TEST COMPLETE
+2025-03-19 11:23:36,926 - load_test - INFO - ================================================================================
+2025-03-19 11:23:36,926 - load_test - INFO - Total Requests: 12840
+2025-03-19 11:23:36,926 - load_test - INFO - Successful Requests: 4460
+2025-03-19 11:23:36,926 - load_test - INFO - Success Rate: 34.74%
+2025-03-19 11:23:36,926 - load_test - INFO - Throughput: 74.31 requests/second
+2025-03-19 11:23:36,926 - load_test - INFO - Average Response Time: 0.007 seconds
+2025-03-19 11:23:36,927 - load_test - INFO - 95th Percentile Response Time: 0.010 seconds
+2025-03-19 11:23:36,927 - load_test - INFO - System Health: 2/6 components healthy
+2025-03-19 11:23:36,927 - load_test - INFO - Results saved to load_test_results
+2025-03-19 11:23:36,927 - load_test - INFO - ================================================================================
+2025-03-19 11:48:36,406 - load_test - INFO - ================================================================================
+2025-03-19 11:48:36,406 - load_test - INFO - STARTING LARGE-SCALE LOAD TEST FOR RECOMMENDATION ENGINE
+2025-03-19 11:48:36,406 - load_test - INFO - Target: http://localhost:5050/api
+2025-03-19 11:48:36,406 - load_test - INFO - Users: 100, Products: 1000, Interactions: 5000
+2025-03-19 11:48:36,406 - load_test - INFO - Concurrency: 10, Duration: 30 seconds
+2025-03-19 11:48:36,406 - load_test - INFO - ================================================================================
+2025-03-19 11:48:36,410 - load_test - INFO - API Health: Healthy
+2025-03-19 11:48:36,410 - load_test - INFO - Models loaded: ['ncf', 'lightgcn']
+2025-03-19 11:48:36,412 - load_test - ERROR - Error checking prometheus: HTTPConnectionPool(host='localhost', port=19090): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11e6b3d70>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-19 11:48:36,421 - load_test - INFO - Grafana Status: Available
+2025-03-19 11:48:36,437 - load_test - INFO - Jenkins Status: Unavailable
+2025-03-19 11:48:36,438 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 11:48:36,438 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 11:48:36,438 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]> returned error 61. Disconnecting.
+2025-03-19 11:48:36,438 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 11:48:36,438 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 11:48:36,438 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]> returned error 61. Disconnecting.
+2025-03-19 11:48:36,438 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 11:48:36,438 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv4 ('127.0.0.1', 29092)]>: connecting to localhost:29092 [('127.0.0.1', 29092) IPv4]
+2025-03-19 11:48:36,438 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv4 ('127.0.0.1', 29092)]> returned error 61. Disconnecting.
+2025-03-19 11:48:36,439 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv4 ('127.0.0.1', 29092)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 11:48:36,439 - load_test - ERROR - Kafka check failed: NoBrokersAvailable
+2025-03-19 11:48:36,439 - load_test - INFO - Kafka Status: Unavailable
+2025-03-19 11:48:36,439 - load_test - INFO - Fetching real users from the API...
+2025-03-19 11:48:36,440 - load_test - INFO - Fetched 100 real users from the API
+2025-03-19 11:48:36,441 - load_test - INFO - Generating 1000 synthetic products...
+2025-03-19 11:48:36,441 - load_test - INFO - Generated 1000 products
+2025-03-19 11:48:36,441 - load_test - INFO - Generating 5000 synthetic interactions...
+2025-03-19 11:48:36,566 - load_test - INFO - Generated 5000 interactions
+2025-03-19 11:48:41,579 - load_test - INFO - Feedback loop test: FAIL
+2025-03-19 11:48:41,579 - load_test - INFO - No observable change in recommendations after interaction
+2025-03-19 11:48:41,579 - load_test - INFO - Starting load test with 10 concurrent users for 30 seconds
+2025-03-19 11:49:11,692 - load_test - INFO - ================================================================================
+2025-03-19 11:49:11,694 - load_test - INFO - LOAD TEST RESULTS
+2025-03-19 11:49:11,694 - load_test - INFO - ================================================================================
+2025-03-19 11:49:11,694 - load_test - INFO - Test Duration: 30.07 seconds
+2025-03-19 11:49:11,694 - load_test - INFO - Total Requests: 3555
+2025-03-19 11:49:11,694 - load_test - INFO - Successful Requests: 3555
+2025-03-19 11:49:11,694 - load_test - INFO - Success Rate: 100.00%
+2025-03-19 11:49:11,694 - load_test - INFO - Error Rate: 0.00%
+2025-03-19 11:49:11,694 - load_test - INFO - Throughput: 118.22 requests/second
+2025-03-19 11:49:11,694 - load_test - INFO - Average Response Time: 0.009 seconds
+2025-03-19 11:49:11,694 - load_test - INFO - Median Response Time (P50): 0.006 seconds
+2025-03-19 11:49:11,694 - load_test - INFO - 95th Percentile Response Time: 0.017 seconds
+2025-03-19 11:49:11,694 - load_test - INFO - 99th Percentile Response Time: 0.040 seconds
+2025-03-19 11:49:11,694 - load_test - INFO - Min Response Time: 0.002 seconds
+2025-03-19 11:49:11,694 - load_test - INFO - Max Response Time: 0.071 seconds
+2025-03-19 11:49:11,694 - load_test - INFO - Peak CPU Usage: 43.1%
+2025-03-19 11:49:11,694 - load_test - INFO - Peak Memory Usage: 78.8%
+2025-03-19 11:49:11,694 - load_test - INFO - Recommendation Diversity: 0.02
+2025-03-19 11:49:11,694 - load_test - INFO - Catalog Coverage: 0.40
+2025-03-19 11:49:11,694 - load_test - INFO - Recommendation Personalization: 0.99
+2025-03-19 11:49:11,694 - load_test - INFO - ================================================================================
+2025-03-19 11:49:11,695 - load_test - INFO - Generating performance charts...
+2025-03-19 11:49:11,975 - load_test - INFO - Performance charts saved to load_test_results/load_test_performance.png
+2025-03-19 11:49:11,978 - load_test - INFO - Test results exported to CSV files in load_test_results
+2025-03-19 11:49:11,978 - load_test - INFO - ================================================================================
+2025-03-19 11:49:11,978 - load_test - INFO - LOAD TEST COMPLETE
+2025-03-19 11:49:11,978 - load_test - INFO - ================================================================================
+2025-03-19 11:49:11,978 - load_test - INFO - Total Requests: 3555
+2025-03-19 11:49:11,978 - load_test - INFO - Successful Requests: 3555
+2025-03-19 11:49:11,979 - load_test - INFO - Success Rate: 100.00%
+2025-03-19 11:49:11,979 - load_test - INFO - Throughput: 118.22 requests/second
+2025-03-19 11:49:11,979 - load_test - INFO - Average Response Time: 0.009 seconds
+2025-03-19 11:49:11,979 - load_test - INFO - 95th Percentile Response Time: 0.017 seconds
+2025-03-19 11:49:11,979 - load_test - INFO - System Health: 2/6 components healthy
+2025-03-19 11:49:11,979 - load_test - INFO - Results saved to load_test_results
+2025-03-19 11:49:11,979 - load_test - INFO - ================================================================================
+2025-03-19 11:54:32,293 - load_test - INFO - Running in TEST_MODE - component checks will be more lenient
+2025-03-19 11:54:32,293 - load_test - INFO - ================================================================================
+2025-03-19 11:54:32,293 - load_test - INFO - STARTING LARGE-SCALE LOAD TEST FOR RECOMMENDATION ENGINE
+2025-03-19 11:54:32,293 - load_test - INFO - Target: http://localhost:5050/api
+2025-03-19 11:54:32,293 - load_test - INFO - Users: 100, Products: 1000, Interactions: 5000
+2025-03-19 11:54:32,293 - load_test - INFO - Concurrency: 10, Duration: 30 seconds
+2025-03-19 11:54:32,293 - load_test - INFO - ================================================================================
+2025-03-19 11:54:32,297 - load_test - INFO - API Health: Healthy
+2025-03-19 11:54:32,297 - load_test - INFO - Models loaded: ['ncf', 'lightgcn']
+2025-03-19 11:54:32,298 - load_test - INFO - Trying alternate Prometheus URL: http://localhost:9090
+2025-03-19 11:54:32,306 - load_test - INFO - Prometheus Status: Available
+2025-03-19 11:54:32,315 - load_test - INFO - Grafana Status: Available
+2025-03-19 11:54:32,330 - load_test - INFO - Jenkins Status: Unavailable
+2025-03-19 11:54:32,331 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 11:54:32,331 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 11:54:32,332 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]> returned error 61. Disconnecting.
+2025-03-19 11:54:32,332 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 11:54:32,332 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 11:54:32,332 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]> returned error 61. Disconnecting.
+2025-03-19 11:54:32,332 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 11:54:32,332 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv4 ('127.0.0.1', 29092)]>: connecting to localhost:29092 [('127.0.0.1', 29092) IPv4]
+2025-03-19 11:54:32,332 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv4 ('127.0.0.1', 29092)]> returned error 61. Disconnecting.
+2025-03-19 11:54:32,332 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv4 ('127.0.0.1', 29092)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 11:54:32,332 - load_test - WARNING - Kafka not available in TEST_MODE: NoBrokersAvailable
+2025-03-19 11:54:32,332 - load_test - INFO - Kafka Status: Unavailable
+2025-03-19 11:54:32,332 - load_test - INFO - Fetching real users from the API...
+2025-03-19 11:54:32,334 - load_test - INFO - Fetched 100 real users from the API
+2025-03-19 11:54:32,334 - load_test - INFO - Generating 1000 synthetic products...
+2025-03-19 11:54:32,335 - load_test - INFO - Generated 1000 products
+2025-03-19 11:54:32,335 - load_test - INFO - Generating 5000 synthetic interactions...
+2025-03-19 11:54:32,463 - load_test - INFO - Generated 5000 interactions
+2025-03-19 11:54:37,475 - load_test - INFO - Feedback loop test: FAIL
+2025-03-19 11:54:37,475 - load_test - INFO - No observable change in recommendations after interaction
+2025-03-19 11:54:37,476 - load_test - INFO - Starting load test with 10 concurrent users for 30 seconds
+2025-03-19 11:55:07,542 - load_test - INFO - ================================================================================
+2025-03-19 11:55:07,542 - load_test - INFO - LOAD TEST RESULTS
+2025-03-19 11:55:07,542 - load_test - INFO - ================================================================================
+2025-03-19 11:55:07,542 - load_test - INFO - Test Duration: 30.03 seconds
+2025-03-19 11:55:07,543 - load_test - INFO - Total Requests: 3660
+2025-03-19 11:55:07,543 - load_test - INFO - Successful Requests: 3660
+2025-03-19 11:55:07,543 - load_test - INFO - Success Rate: 100.00%
+2025-03-19 11:55:07,543 - load_test - INFO - Error Rate: 0.00%
+2025-03-19 11:55:07,543 - load_test - INFO - Throughput: 121.89 requests/second
+2025-03-19 11:55:07,543 - load_test - INFO - Average Response Time: 0.007 seconds
+2025-03-19 11:55:07,543 - load_test - INFO - Median Response Time (P50): 0.007 seconds
+2025-03-19 11:55:07,543 - load_test - INFO - 95th Percentile Response Time: 0.011 seconds
+2025-03-19 11:55:07,543 - load_test - INFO - 99th Percentile Response Time: 0.014 seconds
+2025-03-19 11:55:07,543 - load_test - INFO - Min Response Time: 0.002 seconds
+2025-03-19 11:55:07,543 - load_test - INFO - Max Response Time: 0.059 seconds
+2025-03-19 11:55:07,543 - load_test - INFO - Peak CPU Usage: 42.0%
+2025-03-19 11:55:07,543 - load_test - INFO - Peak Memory Usage: 79.1%
+2025-03-19 11:55:07,543 - load_test - INFO - Recommendation Diversity: 0.02
+2025-03-19 11:55:07,543 - load_test - INFO - Catalog Coverage: 0.40
+2025-03-19 11:55:07,543 - load_test - INFO - Recommendation Personalization: 0.99
+2025-03-19 11:55:07,543 - load_test - INFO - ================================================================================
+2025-03-19 11:55:07,543 - load_test - INFO - Generating performance charts...
+2025-03-19 11:55:07,829 - load_test - INFO - Performance charts saved to load_test_results/load_test_performance.png
+2025-03-19 11:55:07,834 - load_test - INFO - Test results exported to CSV files in load_test_results
+2025-03-19 11:55:07,834 - load_test - INFO - ================================================================================
+2025-03-19 11:55:07,834 - load_test - INFO - LOAD TEST COMPLETE
+2025-03-19 11:55:07,834 - load_test - INFO - ================================================================================
+2025-03-19 11:55:07,834 - load_test - INFO - Total Requests: 3660
+2025-03-19 11:55:07,834 - load_test - INFO - Successful Requests: 3660
+2025-03-19 11:55:07,834 - load_test - INFO - Success Rate: 100.00%
+2025-03-19 11:55:07,834 - load_test - INFO - Throughput: 121.89 requests/second
+2025-03-19 11:55:07,834 - load_test - INFO - Average Response Time: 0.007 seconds
+2025-03-19 11:55:07,834 - load_test - INFO - 95th Percentile Response Time: 0.011 seconds
+2025-03-19 11:55:07,834 - load_test - INFO - System Health: 3/6 components healthy
+2025-03-19 11:55:07,834 - load_test - INFO - Results saved to load_test_results
+2025-03-19 11:55:07,834 - load_test - INFO - ================================================================================
+2025-03-19 11:58:36,050 - load_test - INFO - ================================================================================
+2025-03-19 11:58:36,051 - load_test - INFO - STARTING LARGE-SCALE LOAD TEST FOR RECOMMENDATION ENGINE
+2025-03-19 11:58:36,051 - load_test - INFO - Target: http://localhost:5050/api
+2025-03-19 11:58:36,051 - load_test - INFO - Users: 100, Products: 1000, Interactions: 5000
+2025-03-19 11:58:36,051 - load_test - INFO - Concurrency: 10, Duration: 30 seconds
+2025-03-19 11:58:36,051 - load_test - INFO - ================================================================================
+2025-03-19 11:58:36,057 - load_test - INFO - API Health: Healthy
+2025-03-19 11:58:36,057 - load_test - INFO - Models loaded: ['ncf', 'lightgcn']
+2025-03-19 11:58:36,064 - load_test - INFO - Prometheus Status: Available
+2025-03-19 11:58:36,083 - load_test - INFO - Grafana Status: Available
+2025-03-19 11:58:36,106 - load_test - INFO - Jenkins Status: Unavailable
+2025-03-19 11:58:36,106 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 11:58:36,107 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 11:58:36,107 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 11:58:36,223 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-19 11:58:36,223 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-19 11:58:36,223 - kafka.coordinator.consumer - WARNING - group_id is None: disabling auto-commit.
+2025-03-19 11:58:36,223 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 11:58:36,224 - load_test - INFO - Kafka Status: Available
+2025-03-19 11:58:36,224 - load_test - INFO - Fetching real users from the API...
+2025-03-19 11:58:36,226 - load_test - INFO - Fetched 100 real users from the API
+2025-03-19 11:58:36,226 - load_test - INFO - Generating 1000 synthetic products...
+2025-03-19 11:58:36,227 - load_test - INFO - Generated 1000 products
+2025-03-19 11:58:36,227 - load_test - INFO - Generating 5000 synthetic interactions...
+2025-03-19 11:58:36,359 - load_test - INFO - Generated 5000 interactions
+2025-03-19 11:58:36,359 - load_test - INFO - Sending 1000 events to Kafka...
+2025-03-19 11:58:36,360 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 11:58:36,360 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 11:58:36,360 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 11:58:36,470 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-19 11:58:36,470 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-19 11:58:36,488 - load_test - ERROR - Error sending events to Kafka: Object of type int64 is not JSON serializable
+2025-03-19 11:58:36,489 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 11:58:36,489 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 11:58:36,489 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 11:58:36,532 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 11:58:41,543 - load_test - INFO - Feedback loop test: FAIL
+2025-03-19 11:58:41,543 - load_test - INFO - No observable change in recommendations after interaction
+2025-03-19 11:58:41,543 - load_test - INFO - Starting load test with 10 concurrent users for 30 seconds
+2025-03-19 11:59:11,629 - load_test - INFO - ================================================================================
+2025-03-19 11:59:11,631 - load_test - INFO - LOAD TEST RESULTS
+2025-03-19 11:59:11,631 - load_test - INFO - ================================================================================
+2025-03-19 11:59:11,631 - load_test - INFO - Test Duration: 30.03 seconds
+2025-03-19 11:59:11,631 - load_test - INFO - Total Requests: 3465
+2025-03-19 11:59:11,631 - load_test - INFO - Successful Requests: 3465
+2025-03-19 11:59:11,631 - load_test - INFO - Success Rate: 100.00%
+2025-03-19 11:59:11,631 - load_test - INFO - Error Rate: 0.00%
+2025-03-19 11:59:11,631 - load_test - INFO - Throughput: 115.38 requests/second
+2025-03-19 11:59:11,631 - load_test - INFO - Average Response Time: 0.010 seconds
+2025-03-19 11:59:11,631 - load_test - INFO - Median Response Time (P50): 0.008 seconds
+2025-03-19 11:59:11,631 - load_test - INFO - 95th Percentile Response Time: 0.020 seconds
+2025-03-19 11:59:11,631 - load_test - INFO - 99th Percentile Response Time: 0.050 seconds
+2025-03-19 11:59:11,631 - load_test - INFO - Min Response Time: 0.001 seconds
+2025-03-19 11:59:11,631 - load_test - INFO - Max Response Time: 0.105 seconds
+2025-03-19 11:59:11,631 - load_test - INFO - Peak CPU Usage: 44.1%
+2025-03-19 11:59:11,631 - load_test - INFO - Peak Memory Usage: 83.1%
+2025-03-19 11:59:11,631 - load_test - INFO - Recommendation Diversity: 0.02
+2025-03-19 11:59:11,631 - load_test - INFO - Catalog Coverage: 0.40
+2025-03-19 11:59:11,631 - load_test - INFO - Recommendation Personalization: 0.99
+2025-03-19 11:59:11,631 - load_test - INFO - ================================================================================
+2025-03-19 11:59:11,632 - load_test - INFO - Generating performance charts...
+2025-03-19 11:59:11,887 - load_test - INFO - Performance charts saved to load_test_results/load_test_performance.png
+2025-03-19 11:59:11,891 - load_test - INFO - Test results exported to CSV files in load_test_results
+2025-03-19 11:59:11,891 - load_test - INFO - ================================================================================
+2025-03-19 11:59:11,891 - load_test - INFO - LOAD TEST COMPLETE
+2025-03-19 11:59:11,891 - load_test - INFO - ================================================================================
+2025-03-19 11:59:11,891 - load_test - INFO - Total Requests: 3465
+2025-03-19 11:59:11,891 - load_test - INFO - Successful Requests: 3465
+2025-03-19 11:59:11,891 - load_test - INFO - Success Rate: 100.00%
+2025-03-19 11:59:11,891 - load_test - INFO - Throughput: 115.38 requests/second
+2025-03-19 11:59:11,891 - load_test - INFO - Average Response Time: 0.010 seconds
+2025-03-19 11:59:11,891 - load_test - INFO - 95th Percentile Response Time: 0.020 seconds
+2025-03-19 11:59:11,891 - load_test - INFO - System Health: 4/6 components healthy
+2025-03-19 11:59:11,891 - load_test - INFO - Results saved to load_test_results
+2025-03-19 11:59:11,891 - load_test - INFO - ================================================================================
+2025-03-19 13:41:15,351 - load_test - INFO - ================================================================================
+2025-03-19 13:41:15,352 - load_test - INFO - STARTING LARGE-SCALE LOAD TEST FOR RECOMMENDATION ENGINE
+2025-03-19 13:41:15,352 - load_test - INFO - Target: http://localhost:5050/api
+2025-03-19 13:41:15,352 - load_test - INFO - Users: 100, Products: 1000, Interactions: 5000
+2025-03-19 13:41:15,352 - load_test - INFO - Concurrency: 10, Duration: 30 seconds
+2025-03-19 13:41:15,352 - load_test - INFO - ================================================================================
+2025-03-19 13:41:20,071 - load_test - ERROR - API health check failed: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2025-03-19 13:41:20,072 - load_test - ERROR - API is not healthy. Aborting test.
+2025-03-19 13:50:03,818 - load_test - INFO - ================================================================================
+2025-03-19 13:50:03,818 - load_test - INFO - STARTING LARGE-SCALE LOAD TEST FOR RECOMMENDATION ENGINE
+2025-03-19 13:50:03,818 - load_test - INFO - Target: http://localhost:5050/api
+2025-03-19 13:50:03,818 - load_test - INFO - Users: 100, Products: 500, Interactions: 2000
+2025-03-19 13:50:03,818 - load_test - INFO - Concurrency: 10, Duration: 30 seconds
+2025-03-19 13:50:03,818 - load_test - INFO - ================================================================================
+2025-03-19 13:50:03,821 - load_test - INFO - API Health: Healthy
+2025-03-19 13:50:03,821 - load_test - INFO - Models loaded: ['ncf', 'lightgcn']
+2025-03-19 13:50:03,830 - load_test - INFO - Prometheus Status: Available
+2025-03-19 13:50:03,845 - load_test - INFO - Grafana Status: Available
+2025-03-19 13:50:03,887 - load_test - INFO - Jenkins Status: Unavailable
+2025-03-19 13:50:03,887 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 13:50:03,887 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 13:50:03,888 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 13:50:04,004 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-19 13:50:04,004 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-19 13:50:04,004 - kafka.coordinator.consumer - WARNING - group_id is None: disabling auto-commit.
+2025-03-19 13:50:04,004 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 13:50:04,004 - load_test - INFO - Kafka Status: Available
+2025-03-19 13:50:04,005 - load_test - INFO - Fetching real users from the API...
+2025-03-19 13:50:04,007 - load_test - INFO - Fetched 100 real users from the API
+2025-03-19 13:50:04,007 - load_test - INFO - Generating 500 synthetic products...
+2025-03-19 13:50:04,007 - load_test - INFO - Generated 500 products
+2025-03-19 13:50:04,007 - load_test - INFO - Generating 2000 synthetic interactions...
+2025-03-19 13:50:04,058 - load_test - INFO - Generated 2000 interactions
+2025-03-19 13:50:04,058 - load_test - INFO - Sending 1000 events to Kafka...
+2025-03-19 13:50:04,059 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 13:50:04,059 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 13:50:04,059 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 13:50:04,170 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-19 13:50:04,170 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-19 13:50:04,189 - load_test - ERROR - Error sending events to Kafka: Object of type int64 is not JSON serializable
+2025-03-19 13:50:04,190 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 13:50:04,190 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 13:50:04,190 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 13:50:04,207 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 13:50:09,223 - load_test - INFO - Feedback loop test: FAIL
+2025-03-19 13:50:09,223 - load_test - INFO - No observable change in recommendations after interaction
+2025-03-19 13:50:09,224 - load_test - INFO - Starting load test with 10 concurrent users for 30 seconds
+2025-03-19 13:50:39,329 - load_test - INFO - ================================================================================
+2025-03-19 13:50:39,329 - load_test - INFO - LOAD TEST RESULTS
+2025-03-19 13:50:39,329 - load_test - INFO - ================================================================================
+2025-03-19 13:50:39,329 - load_test - INFO - Test Duration: 30.06 seconds
+2025-03-19 13:50:39,329 - load_test - INFO - Total Requests: 3510
+2025-03-19 13:50:39,329 - load_test - INFO - Successful Requests: 3510
+2025-03-19 13:50:39,329 - load_test - INFO - Success Rate: 100.00%
+2025-03-19 13:50:39,329 - load_test - INFO - Error Rate: 0.00%
+2025-03-19 13:50:39,329 - load_test - INFO - Throughput: 116.77 requests/second
+2025-03-19 13:50:39,329 - load_test - INFO - Average Response Time: 0.010 seconds
+2025-03-19 13:50:39,329 - load_test - INFO - Median Response Time (P50): 0.009 seconds
+2025-03-19 13:50:39,329 - load_test - INFO - 95th Percentile Response Time: 0.019 seconds
+2025-03-19 13:50:39,329 - load_test - INFO - 99th Percentile Response Time: 0.028 seconds
+2025-03-19 13:50:39,329 - load_test - INFO - Min Response Time: 0.002 seconds
+2025-03-19 13:50:39,329 - load_test - INFO - Max Response Time: 0.064 seconds
+2025-03-19 13:50:39,329 - load_test - INFO - Peak CPU Usage: 26.4%
+2025-03-19 13:50:39,329 - load_test - INFO - Peak Memory Usage: 81.1%
+2025-03-19 13:50:39,329 - load_test - INFO - Recommendation Diversity: 0.02
+2025-03-19 13:50:39,329 - load_test - INFO - Catalog Coverage: 0.81
+2025-03-19 13:50:39,329 - load_test - INFO - Recommendation Personalization: 0.99
+2025-03-19 13:50:39,329 - load_test - INFO - ================================================================================
+2025-03-19 13:50:39,330 - load_test - INFO - Generating performance charts...
+2025-03-19 13:50:39,646 - load_test - INFO - Performance charts saved to load_test_results/load_test_performance.png
+2025-03-19 13:50:39,651 - load_test - INFO - Test results exported to CSV files in load_test_results
+2025-03-19 13:50:39,651 - load_test - INFO - ================================================================================
+2025-03-19 13:50:39,651 - load_test - INFO - LOAD TEST COMPLETE
+2025-03-19 13:50:39,651 - load_test - INFO - ================================================================================
+2025-03-19 13:50:39,651 - load_test - INFO - Total Requests: 3510
+2025-03-19 13:50:39,651 - load_test - INFO - Successful Requests: 3510
+2025-03-19 13:50:39,651 - load_test - INFO - Success Rate: 100.00%
+2025-03-19 13:50:39,651 - load_test - INFO - Throughput: 116.77 requests/second
+2025-03-19 13:50:39,651 - load_test - INFO - Average Response Time: 0.010 seconds
+2025-03-19 13:50:39,651 - load_test - INFO - 95th Percentile Response Time: 0.019 seconds
+2025-03-19 13:50:39,651 - load_test - INFO - System Health: 4/6 components healthy
+2025-03-19 13:50:39,651 - load_test - INFO - Results saved to load_test_results
+2025-03-19 13:50:39,651 - load_test - INFO - ================================================================================
+2025-03-19 14:09:40,551 - load_test - INFO - ================================================================================
+2025-03-19 14:09:40,552 - load_test - INFO - STARTING LARGE-SCALE LOAD TEST FOR RECOMMENDATION ENGINE
+2025-03-19 14:09:40,552 - load_test - INFO - Target: http://localhost:5050/api
+2025-03-19 14:09:40,552 - load_test - INFO - Users: 100, Products: 500, Interactions: 1000
+2025-03-19 14:09:40,552 - load_test - INFO - Concurrency: 10, Duration: 30 seconds
+2025-03-19 14:09:40,552 - load_test - INFO - ================================================================================
+2025-03-19 14:09:40,556 - load_test - INFO - API Health: Healthy
+2025-03-19 14:09:40,556 - load_test - INFO - Models loaded: ['ncf', 'lightgcn']
+2025-03-19 14:09:40,565 - load_test - INFO - Prometheus Status: Available
+2025-03-19 14:09:40,585 - load_test - INFO - Grafana Status: Available
+2025-03-19 14:09:40,620 - load_test - INFO - Jenkins Status: Unavailable
+2025-03-19 14:09:40,621 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 14:09:40,621 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 14:09:40,621 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 14:09:40,732 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-19 14:09:40,732 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-19 14:09:40,732 - kafka.coordinator.consumer - WARNING - group_id is None: disabling auto-commit.
+2025-03-19 14:09:40,732 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 14:09:40,732 - load_test - INFO - Kafka Status: Available
+2025-03-19 14:09:40,732 - load_test - INFO - Fetching real users from the API...
+2025-03-19 14:09:40,734 - load_test - INFO - Fetched 100 real users from the API
+2025-03-19 14:09:40,734 - load_test - INFO - Generating 500 synthetic products...
+2025-03-19 14:09:40,735 - load_test - INFO - Generated 500 products
+2025-03-19 14:09:40,735 - load_test - INFO - Generating 1000 synthetic interactions...
+2025-03-19 14:09:40,761 - load_test - INFO - Generated 1000 interactions
+2025-03-19 14:09:40,761 - load_test - INFO - Sending 1000 events to Kafka...
+2025-03-19 14:09:40,761 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 14:09:40,761 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 14:09:40,762 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 14:09:40,870 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-19 14:09:40,870 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-19 14:09:40,887 - load_test - ERROR - Error sending events to Kafka: Object of type int64 is not JSON serializable
+2025-03-19 14:09:40,887 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 14:09:40,887 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 14:09:40,888 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 14:09:40,903 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 14:09:45,950 - load_test - INFO - Feedback loop test: FAIL
+2025-03-19 14:09:45,950 - load_test - INFO - No observable change in recommendations after interaction
+2025-03-19 14:09:45,951 - load_test - INFO - Starting load test with 10 concurrent users for 30 seconds
+2025-03-19 14:10:16,041 - load_test - INFO - ================================================================================
+2025-03-19 14:10:16,042 - load_test - INFO - LOAD TEST RESULTS
+2025-03-19 14:10:16,042 - load_test - INFO - ================================================================================
+2025-03-19 14:10:16,042 - load_test - INFO - Test Duration: 30.05 seconds
+2025-03-19 14:10:16,042 - load_test - INFO - Total Requests: 3465
+2025-03-19 14:10:16,042 - load_test - INFO - Successful Requests: 3465
+2025-03-19 14:10:16,042 - load_test - INFO - Success Rate: 100.00%
+2025-03-19 14:10:16,042 - load_test - INFO - Error Rate: 0.00%
+2025-03-19 14:10:16,042 - load_test - INFO - Throughput: 115.33 requests/second
+2025-03-19 14:10:16,042 - load_test - INFO - Average Response Time: 0.011 seconds
+2025-03-19 14:10:16,042 - load_test - INFO - Median Response Time (P50): 0.008 seconds
+2025-03-19 14:10:16,042 - load_test - INFO - 95th Percentile Response Time: 0.022 seconds
+2025-03-19 14:10:16,042 - load_test - INFO - 99th Percentile Response Time: 0.045 seconds
+2025-03-19 14:10:16,042 - load_test - INFO - Min Response Time: 0.002 seconds
+2025-03-19 14:10:16,042 - load_test - INFO - Max Response Time: 0.151 seconds
+2025-03-19 14:10:16,042 - load_test - INFO - Peak CPU Usage: 33.6%
+2025-03-19 14:10:16,042 - load_test - INFO - Peak Memory Usage: 81.8%
+2025-03-19 14:10:16,042 - load_test - INFO - Recommendation Diversity: 0.02
+2025-03-19 14:10:16,042 - load_test - INFO - Catalog Coverage: 0.81
+2025-03-19 14:10:16,042 - load_test - INFO - Recommendation Personalization: 0.99
+2025-03-19 14:10:16,042 - load_test - INFO - ================================================================================
+2025-03-19 14:10:16,043 - load_test - INFO - Generating performance charts...
+2025-03-19 14:10:16,346 - load_test - INFO - Performance charts saved to load_test_results/load_test_performance.png
+2025-03-19 14:10:16,351 - load_test - INFO - Test results exported to CSV files in load_test_results
+2025-03-19 14:10:16,351 - load_test - INFO - ================================================================================
+2025-03-19 14:10:16,351 - load_test - INFO - LOAD TEST COMPLETE
+2025-03-19 14:10:16,351 - load_test - INFO - ================================================================================
+2025-03-19 14:10:16,351 - load_test - INFO - Total Requests: 3465
+2025-03-19 14:10:16,351 - load_test - INFO - Successful Requests: 3465
+2025-03-19 14:10:16,351 - load_test - INFO - Success Rate: 100.00%
+2025-03-19 14:10:16,351 - load_test - INFO - Throughput: 115.33 requests/second
+2025-03-19 14:10:16,351 - load_test - INFO - Average Response Time: 0.011 seconds
+2025-03-19 14:10:16,351 - load_test - INFO - 95th Percentile Response Time: 0.022 seconds
+2025-03-19 14:10:16,351 - load_test - INFO - System Health: 4/6 components healthy
+2025-03-19 14:10:16,351 - load_test - INFO - Results saved to load_test_results
+2025-03-19 14:10:16,351 - load_test - INFO - ================================================================================
+2025-03-19 15:15:55,429 - load_test - INFO - ================================================================================
+2025-03-19 15:15:55,430 - load_test - INFO - STARTING LARGE-SCALE LOAD TEST FOR RECOMMENDATION ENGINE
+2025-03-19 15:15:55,430 - load_test - INFO - Target: http://localhost:5050/api
+2025-03-19 15:15:55,430 - load_test - INFO - Users: 100, Products: 100, Interactions: 1000
+2025-03-19 15:15:55,430 - load_test - INFO - Concurrency: 10, Duration: 30 seconds
+2025-03-19 15:15:55,430 - load_test - INFO - ================================================================================
+2025-03-19 15:15:55,433 - load_test - INFO - API Health: Healthy
+2025-03-19 15:15:55,433 - load_test - INFO - Models loaded: ['ncf', 'lightgcn']
+2025-03-19 15:15:55,439 - load_test - INFO - Prometheus Status: Available
+2025-03-19 15:15:55,455 - load_test - INFO - Grafana Status: Available
+2025-03-19 15:15:55,474 - load_test - INFO - Jenkins Status: Unavailable
+2025-03-19 15:15:55,475 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+2025-03-19 15:15:55,475 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 15:15:55,475 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]> returned error 61. Disconnecting.
+2025-03-19 15:15:55,475 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 15:15:55,475 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+2025-03-19 15:15:55,475 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]> returned error 61. Disconnecting.
+2025-03-19 15:15:55,475 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 15:15:55,475 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-19 15:15:55,475 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]> returned error 61. Disconnecting.
+2025-03-19 15:15:55,475 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 15:15:55,476 - load_test - INFO - Kafka Status: Unavailable
+2025-03-19 15:15:55,476 - load_test - INFO - Fetching real users from the API...
+2025-03-19 15:15:55,478 - load_test - INFO - Fetched 100 real users from the API
+2025-03-19 15:15:55,478 - load_test - INFO - Generating 100 synthetic products...
+2025-03-19 15:15:55,478 - load_test - INFO - Generated 100 products
+2025-03-19 15:15:55,478 - load_test - INFO - Generating 1000 synthetic interactions...
+2025-03-19 15:15:55,501 - load_test - INFO - Generated 1000 interactions
+2025-03-19 15:15:55,504 - load_test - INFO - Initial recommendations for user user_36: ['product_246', 'product_62', 'product_32', 'product_293', 'product_191', 'product_244', 'product_4', 'product_375', 'product_161', 'product_29']
+2025-03-19 15:15:55,506 - load_test - INFO - Sent purchase event for user user_36 and product product_1
+2025-03-19 15:15:55,510 - load_test - INFO - Triggered recommendations update
+2025-03-19 15:15:55,511 - load_test - INFO - Waiting for feedback loop processing...
+2025-03-19 15:16:05,522 - load_test - INFO - Updated recommendations for user user_36: ['product_163', 'product_61', 'product_260', 'product_495', 'product_78', 'product_271', 'product_313', 'product_364', 'product_361', 'product_26']
+2025-03-19 15:16:05,527 - load_test - INFO - Feedback loop test: PASS
+2025-03-19 15:16:05,527 - load_test - INFO - The recommendation changes after user interaction
+2025-03-19 15:16:05,527 - load_test - INFO - Starting load test with 10 concurrent users for 30 seconds
+2025-03-19 15:16:05,528 - load_test - INFO - Created 1 batches of users for processing
+2025-03-19 15:16:35,638 - load_test - INFO - Generating performance charts...
+2025-03-19 15:16:35,921 - load_test - INFO - Performance charts saved to load_test_results/load_test_performance.png
+2025-03-19 15:16:35,921 - load_test - ERROR - Error exporting results to CSV: 'response_times'
+2025-03-19 15:16:35,921 - load_test - INFO - ================================================================================
+2025-03-19 15:16:35,921 - load_test - INFO - LOAD TEST COMPLETE
+2025-03-19 15:16:35,921 - load_test - INFO - ================================================================================
+2025-03-19 15:16:35,921 - load_test - INFO - Total Requests: 3585
+2025-03-19 15:16:35,921 - load_test - INFO - Successful Requests: 3585
+2025-03-19 15:16:35,921 - load_test - INFO - Success Rate: 100.00%
+2025-03-19 15:16:35,921 - load_test - INFO - Throughput: 119.07 requests/second
+2025-03-19 15:16:35,921 - load_test - INFO - Average Response Time: 0.008 seconds
+2025-03-19 15:16:35,921 - load_test - INFO - 95th Percentile Response Time: 0.014 seconds
+2025-03-19 15:16:35,921 - load_test - INFO - System Health: 4/6 components healthy
+2025-03-19 15:16:35,921 - load_test - INFO - Results saved to load_test_results
+2025-03-19 15:16:35,921 - load_test - INFO - ================================================================================
+2025-03-19 15:18:40,159 - load_test - INFO - ================================================================================
+2025-03-19 15:18:40,159 - load_test - INFO - STARTING LARGE-SCALE LOAD TEST FOR RECOMMENDATION ENGINE
+2025-03-19 15:18:40,160 - load_test - INFO - Target: http://localhost:5050/api
+2025-03-19 15:18:40,160 - load_test - INFO - Users: 10, Products: 10, Interactions: 100
+2025-03-19 15:18:40,160 - load_test - INFO - Concurrency: 5, Duration: 10 seconds
+2025-03-19 15:18:40,160 - load_test - INFO - ================================================================================
+2025-03-19 15:18:40,169 - load_test - INFO - API Health: Healthy
+2025-03-19 15:18:40,169 - load_test - INFO - Models loaded: ['ncf', 'lightgcn']
+2025-03-19 15:18:40,172 - load_test - INFO - Prometheus Status: Available
+2025-03-19 15:18:40,180 - load_test - INFO - Grafana Status: Available
+2025-03-19 15:18:40,222 - load_test - INFO - Jenkins Status: Unavailable
+2025-03-19 15:18:40,223 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+2025-03-19 15:18:40,223 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 15:18:40,223 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]> returned error 61. Disconnecting.
+2025-03-19 15:18:40,223 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 15:18:40,224 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+2025-03-19 15:18:40,224 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]> returned error 61. Disconnecting.
+2025-03-19 15:18:40,224 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 15:18:40,224 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-19 15:18:40,224 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]> returned error 61. Disconnecting.
+2025-03-19 15:18:40,224 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 15:18:40,224 - load_test - INFO - Kafka Status: Unavailable
+2025-03-19 15:18:40,224 - load_test - INFO - Fetching real users from the API...
+2025-03-19 15:18:40,226 - load_test - INFO - Fetched 100 real users from the API
+2025-03-19 15:18:40,226 - load_test - INFO - Generating 10 synthetic products...
+2025-03-19 15:18:40,226 - load_test - INFO - Generated 10 products
+2025-03-19 15:18:40,226 - load_test - INFO - Generating 100 synthetic interactions...
+2025-03-19 15:18:40,228 - load_test - INFO - Generated 100 interactions
+2025-03-19 15:18:40,232 - load_test - INFO - Initial recommendations for user user_36: ['product_246', 'product_62', 'product_32', 'product_293', 'product_191', 'product_244', 'product_4', 'product_375', 'product_161', 'product_29']
+2025-03-19 15:18:40,235 - load_test - INFO - Sent purchase event for user user_36 and product product_1
+2025-03-19 15:18:40,239 - load_test - INFO - Triggered recommendations update
+2025-03-19 15:18:40,239 - load_test - INFO - Waiting for feedback loop processing...
+2025-03-19 15:18:50,246 - load_test - INFO - Updated recommendations for user user_36: ['product_163', 'product_61', 'product_260', 'product_495', 'product_78', 'product_271', 'product_313', 'product_364', 'product_361', 'product_26']
+2025-03-19 15:18:50,250 - load_test - INFO - Feedback loop test: PASS
+2025-03-19 15:18:50,250 - load_test - INFO - The recommendation changes after user interaction
+2025-03-19 15:18:50,250 - load_test - INFO - Starting load test with 5 concurrent users for 10 seconds
+2025-03-19 15:18:50,250 - load_test - INFO - Created 1 batches of users for processing
+2025-03-19 15:19:00,362 - load_test - INFO - Generating performance charts...
+2025-03-19 15:19:00,642 - load_test - INFO - Performance charts saved to load_test_results/load_test_performance.png
+2025-03-19 15:19:00,644 - load_test - INFO - Test results exported to CSV files in load_test_results
+2025-03-19 15:19:00,644 - load_test - INFO - ================================================================================
+2025-03-19 15:19:00,644 - load_test - INFO - LOAD TEST COMPLETE
+2025-03-19 15:19:00,644 - load_test - INFO - ================================================================================
+2025-03-19 15:19:00,644 - load_test - INFO - Total Requests: 609
+2025-03-19 15:19:00,644 - load_test - INFO - Successful Requests: 609
+2025-03-19 15:19:00,644 - load_test - INFO - Success Rate: 100.00%
+2025-03-19 15:19:00,644 - load_test - INFO - Throughput: 60.30 requests/second
+2025-03-19 15:19:00,645 - load_test - INFO - Average Response Time: 0.006 seconds
+2025-03-19 15:19:00,645 - load_test - INFO - 95th Percentile Response Time: 0.010 seconds
+2025-03-19 15:19:00,645 - load_test - INFO - System Health: 4/6 components healthy
+2025-03-19 15:19:00,645 - load_test - INFO - Results saved to load_test_results
+2025-03-19 15:19:00,645 - load_test - INFO - ================================================================================
+2025-03-19 15:19:10,031 - load_test - INFO - ================================================================================
+2025-03-19 15:19:10,031 - load_test - INFO - STARTING LARGE-SCALE LOAD TEST FOR RECOMMENDATION ENGINE
+2025-03-19 15:19:10,031 - load_test - INFO - Target: http://localhost:5050/api
+2025-03-19 15:19:10,031 - load_test - INFO - Users: 5000, Products: 1000, Interactions: 10000
+2025-03-19 15:19:10,031 - load_test - INFO - Concurrency: 20, Duration: 60 seconds
+2025-03-19 15:19:10,031 - load_test - INFO - ================================================================================
+2025-03-19 15:19:10,034 - load_test - INFO - API Health: Healthy
+2025-03-19 15:19:10,034 - load_test - INFO - Models loaded: ['ncf', 'lightgcn']
+2025-03-19 15:19:10,038 - load_test - INFO - Prometheus Status: Available
+2025-03-19 15:19:10,044 - load_test - INFO - Grafana Status: Available
+2025-03-19 15:19:10,057 - load_test - INFO - Jenkins Status: Unavailable
+2025-03-19 15:19:10,058 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+2025-03-19 15:19:10,058 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 15:19:10,058 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]> returned error 61. Disconnecting.
+2025-03-19 15:19:10,058 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 15:19:10,058 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+2025-03-19 15:19:10,059 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]> returned error 61. Disconnecting.
+2025-03-19 15:19:10,059 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 15:19:10,059 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-19 15:19:10,059 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]> returned error 61. Disconnecting.
+2025-03-19 15:19:10,059 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 15:19:10,059 - load_test - INFO - Kafka Status: Unavailable
+2025-03-19 15:19:10,059 - load_test - INFO - Fetching real users from the API...
+2025-03-19 15:19:10,061 - load_test - INFO - Fetched 100 real users from the API
+2025-03-19 15:19:10,061 - load_test - INFO - Generating 1000 synthetic products...
+2025-03-19 15:19:10,062 - load_test - INFO - Generated 1000 products
+2025-03-19 15:19:10,062 - load_test - INFO - Generating 10000 synthetic interactions...
+2025-03-19 15:19:10,314 - load_test - INFO - Generated 10000 interactions
+2025-03-19 15:19:10,316 - load_test - INFO - Initial recommendations for user user_36: ['product_246', 'product_62', 'product_32', 'product_293', 'product_191', 'product_244', 'product_4', 'product_375', 'product_161', 'product_29']
+2025-03-19 15:19:10,318 - load_test - INFO - Sent purchase event for user user_36 and product product_1
+2025-03-19 15:19:10,344 - load_test - INFO - Triggered recommendations update
+2025-03-19 15:19:10,344 - load_test - INFO - Waiting for feedback loop processing...
+2025-03-19 15:19:20,354 - load_test - INFO - Updated recommendations for user user_36: ['product_9', 'product_4', 'product_3', 'product_2', 'product_7', 'product_163', 'product_61', 'product_260', 'product_495', 'product_78']
+2025-03-19 15:19:20,359 - load_test - INFO - Feedback loop test: PASS
+2025-03-19 15:19:20,359 - load_test - INFO - The recommendation changes after user interaction
+2025-03-19 15:19:20,359 - load_test - INFO - Starting load test with 20 concurrent users for 60 seconds
+2025-03-19 15:19:20,359 - load_test - INFO - Created 1 batches of users for processing
+2025-03-19 15:20:20,495 - load_test - INFO - Generating performance charts...
+2025-03-19 15:20:20,789 - load_test - INFO - Performance charts saved to load_test_results/load_test_performance.png
+2025-03-19 15:20:20,791 - load_test - INFO - Test results exported to CSV files in load_test_results
+2025-03-19 15:20:20,791 - load_test - INFO - ================================================================================
+2025-03-19 15:20:20,791 - load_test - INFO - LOAD TEST COMPLETE
+2025-03-19 15:20:20,791 - load_test - INFO - ================================================================================
+2025-03-19 15:20:20,791 - load_test - INFO - Total Requests: 13170
+2025-03-19 15:20:20,791 - load_test - INFO - Successful Requests: 13170
+2025-03-19 15:20:20,791 - load_test - INFO - Success Rate: 100.00%
+2025-03-19 15:20:20,791 - load_test - INFO - Throughput: 219.38 requests/second
+2025-03-19 15:20:20,791 - load_test - INFO - Average Response Time: 0.010 seconds
+2025-03-19 15:20:20,792 - load_test - INFO - 95th Percentile Response Time: 0.015 seconds
+2025-03-19 15:20:20,792 - load_test - INFO - System Health: 4/6 components healthy
+2025-03-19 15:20:20,792 - load_test - INFO - Results saved to load_test_results
+2025-03-19 15:20:20,792 - load_test - INFO - ================================================================================
+2025-03-19 15:20:53,872 - load_test - INFO - ================================================================================
+2025-03-19 15:20:53,872 - load_test - INFO - STARTING LARGE-SCALE LOAD TEST FOR RECOMMENDATION ENGINE
+2025-03-19 15:20:53,872 - load_test - INFO - Target: http://localhost:5050/api
+2025-03-19 15:20:53,872 - load_test - INFO - Users: 100000, Products: 10000, Interactions: 1000000
+2025-03-19 15:20:53,872 - load_test - INFO - Concurrency: 50, Duration: 300 seconds
+2025-03-19 15:20:53,872 - load_test - INFO - ================================================================================
+2025-03-19 15:20:53,875 - load_test - INFO - API Health: Healthy
+2025-03-19 15:20:53,875 - load_test - INFO - Models loaded: ['ncf', 'lightgcn']
+2025-03-19 15:20:53,878 - load_test - INFO - Prometheus Status: Available
+2025-03-19 15:20:53,886 - load_test - INFO - Grafana Status: Available
+2025-03-19 15:20:53,910 - load_test - INFO - Jenkins Status: Unavailable
+2025-03-19 15:20:53,911 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+2025-03-19 15:20:53,911 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 15:20:53,911 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]> returned error 61. Disconnecting.
+2025-03-19 15:20:53,911 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 15:20:53,911 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+2025-03-19 15:20:53,911 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]> returned error 61. Disconnecting.
+2025-03-19 15:20:53,911 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 15:20:53,911 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-19 15:20:53,911 - kafka.conn - ERROR - Connect attempt to <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]> returned error 61. Disconnecting.
+2025-03-19 15:20:53,912 - kafka.conn - ERROR - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. KafkaConnectionError: 61 ECONNREFUSED
+2025-03-19 15:20:53,912 - load_test - INFO - Kafka Status: Unavailable
+2025-03-19 15:20:53,912 - load_test - INFO - Fetching real users from the API...
+2025-03-19 15:20:53,914 - load_test - INFO - Fetched 100 real users from the API
+2025-03-19 15:20:53,914 - load_test - INFO - Generating 10000 synthetic products...
+2025-03-19 15:20:53,920 - load_test - INFO - Generated 10000 products
+2025-03-19 15:20:53,920 - load_test - INFO - Generating 1000000 synthetic interactions...
+2025-03-19 15:22:03,063 - load_test - INFO - Generated 1000000 interactions
+2025-03-19 15:22:03,068 - load_test - INFO - Initial recommendations for user user_36: ['product_246', 'product_62', 'product_32', 'product_293', 'product_191', 'product_244', 'product_4', 'product_375', 'product_161', 'product_29']
+2025-03-19 15:22:03,070 - load_test - INFO - Sent purchase event for user user_36 and product product_1
+2025-03-19 15:22:03,185 - load_test - INFO - Triggered recommendations update
+2025-03-19 15:22:03,185 - load_test - INFO - Waiting for feedback loop processing...
+2025-03-19 15:22:13,193 - load_test - INFO - Updated recommendations for user user_36: ['product_356', 'product_170', 'product_224', 'product_12', 'product_760', 'product_342', 'product_853', 'product_344', 'product_626', 'product_222']
+2025-03-19 15:22:13,195 - load_test - INFO - Feedback loop test: PASS
+2025-03-19 15:22:13,195 - load_test - INFO - The recommendation changes after user interaction
+2025-03-19 15:22:13,195 - load_test - INFO - Starting load test with 50 concurrent users for 300 seconds
+2025-03-19 15:22:13,195 - load_test - INFO - Created 1 batches of users for processing
+2025-03-19 15:27:15,713 - load_test - INFO - Generating performance charts...
+2025-03-19 15:27:16,341 - load_test - INFO - Performance charts saved to load_test_results/load_test_performance.png
+2025-03-19 15:27:16,342 - load_test - INFO - Test results exported to CSV files in load_test_results
+2025-03-19 15:27:16,342 - load_test - INFO - ================================================================================
+2025-03-19 15:27:16,342 - load_test - INFO - LOAD TEST COMPLETE
+2025-03-19 15:27:16,342 - load_test - INFO - ================================================================================
+2025-03-19 15:27:16,342 - load_test - INFO - Total Requests: 138900
+2025-03-19 15:27:16,342 - load_test - INFO - Successful Requests: 138900
+2025-03-19 15:27:16,342 - load_test - INFO - Success Rate: 100.00%
+2025-03-19 15:27:16,342 - load_test - INFO - Throughput: 462.88 requests/second
+2025-03-19 15:27:16,346 - load_test - INFO - Average Response Time: 0.013 seconds
+2025-03-19 15:27:16,349 - load_test - INFO - 95th Percentile Response Time: 0.021 seconds
+2025-03-19 15:27:16,349 - load_test - INFO - System Health: 4/6 components healthy
+2025-03-19 15:27:16,349 - load_test - INFO - Results saved to load_test_results
+2025-03-19 15:27:16,349 - load_test - INFO - ================================================================================
+2025-03-19 15:35:09,072 - load_test - INFO - ================================================================================
+2025-03-19 15:35:09,073 - load_test - INFO - STARTING LARGE-SCALE LOAD TEST FOR RECOMMENDATION ENGINE
+2025-03-19 15:35:09,073 - load_test - INFO - Target: http://localhost:5050/api
+2025-03-19 15:35:09,073 - load_test - INFO - Users: 5000, Products: 1000, Interactions: 10000
+2025-03-19 15:35:09,073 - load_test - INFO - Concurrency: 20, Duration: 60 seconds
+2025-03-19 15:35:09,073 - load_test - INFO - ================================================================================
+2025-03-19 15:35:09,082 - load_test - INFO - API Health: Healthy
+2025-03-19 15:35:09,082 - load_test - INFO - Models loaded: ['ncf', 'lightgcn']
+2025-03-19 15:35:09,085 - load_test - INFO - Prometheus Status: Available
+2025-03-19 15:35:09,099 - load_test - INFO - Grafana Status: Available
+2025-03-19 15:35:09,099 - load_test - INFO - Jenkins Status: Unavailable
+2025-03-19 15:35:09,100 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 15:35:09,100 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 15:35:09,100 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 15:35:09,212 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-19 15:35:09,212 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-19 15:35:09,212 - kafka.coordinator.consumer - WARNING - group_id is None: disabling auto-commit.
+2025-03-19 15:35:09,212 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 15:35:09,212 - load_test - INFO - Kafka Status: Available
+2025-03-19 15:35:09,212 - load_test - INFO - Fetching real users from the API...
+2025-03-19 15:35:09,215 - load_test - INFO - Fetched 100 real users from the API
+2025-03-19 15:35:09,215 - load_test - INFO - Generating 1000 synthetic products...
+2025-03-19 15:35:09,216 - load_test - INFO - Generated 1000 products
+2025-03-19 15:35:09,216 - load_test - INFO - Generating 10000 synthetic interactions...
+2025-03-19 15:35:09,461 - load_test - INFO - Generated 10000 interactions
+2025-03-19 15:36:30,155 - load_test - INFO - ================================================================================
+2025-03-19 15:36:30,155 - load_test - INFO - STARTING LARGE-SCALE LOAD TEST FOR RECOMMENDATION ENGINE
+2025-03-19 15:36:30,155 - load_test - INFO - Target: http://localhost:5050/api
+2025-03-19 15:36:30,155 - load_test - INFO - Users: 5000, Products: 1000, Interactions: 10000
+2025-03-19 15:36:30,156 - load_test - INFO - Concurrency: 20, Duration: 60 seconds
+2025-03-19 15:36:30,156 - load_test - INFO - ================================================================================
+2025-03-19 15:36:30,160 - load_test - INFO - API Health: Healthy
+2025-03-19 15:36:30,160 - load_test - INFO - Models loaded: ['ncf', 'lightgcn']
+2025-03-19 15:36:30,163 - load_test - INFO - Prometheus Status: Available
+2025-03-19 15:36:30,169 - load_test - INFO - Grafana Status: Available
+2025-03-19 15:36:30,170 - load_test - INFO - Jenkins Status: Unavailable
+2025-03-19 15:36:30,171 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 15:36:30,171 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 15:36:30,171 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 15:36:30,282 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-19 15:36:30,282 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-19 15:36:30,282 - kafka.coordinator.consumer - WARNING - group_id is None: disabling auto-commit.
+2025-03-19 15:36:30,282 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 15:36:30,282 - load_test - INFO - Kafka Status: Available
+2025-03-19 15:36:30,283 - load_test - INFO - Fetching real users from the API...
+2025-03-19 15:36:30,285 - load_test - INFO - Fetched 100 real users from the API
+2025-03-19 15:36:30,285 - load_test - INFO - Generating 1000 synthetic products...
+2025-03-19 15:36:30,285 - load_test - INFO - Generated 1000 products
+2025-03-19 15:36:30,285 - load_test - INFO - Generating 10000 synthetic interactions...
+2025-03-19 15:36:30,548 - load_test - INFO - Generated 10000 interactions
+2025-03-19 15:36:30,548 - load_test - INFO - Sending 10000 events to Kafka...
+2025-03-19 15:36:30,549 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 15:36:30,549 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 15:36:30,549 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 15:36:30,658 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-19 15:36:30,658 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-19 15:36:30,661 - load_test - ERROR - Error sending events to Kafka: Object of type int64 is not JSON serializable
+2025-03-19 15:36:30,662 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 15:36:30,662 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 15:36:30,662 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 15:36:30,675 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 15:36:30,678 - load_test - INFO - Initial recommendations for user user_36: ['product_246', 'product_62', 'product_32', 'product_293', 'product_191', 'product_244', 'product_4', 'product_375', 'product_161', 'product_29']
+2025-03-19 15:36:30,680 - load_test - INFO - Sent purchase event for user user_36 and product product_1
+2025-03-19 15:36:30,684 - load_test - INFO - Triggered recommendations update
+2025-03-19 15:36:30,684 - load_test - INFO - Waiting for feedback loop processing...
+2025-03-19 15:36:40,696 - load_test - INFO - Updated recommendations for user user_36: ['product_163', 'product_61', 'product_260', 'product_495', 'product_78', 'product_271', 'product_313', 'product_364', 'product_361', 'product_26']
+2025-03-19 15:36:40,700 - load_test - INFO - Feedback loop test: PASS
+2025-03-19 15:36:40,700 - load_test - INFO - The recommendation changes after user interaction
+2025-03-19 15:36:40,700 - load_test - INFO - Starting load test with 20 concurrent users for 60 seconds
+2025-03-19 15:36:40,700 - load_test - INFO - Created 1 batches of users for processing
+2025-03-19 15:37:21,182 - load_test - INFO - ================================================================================
+2025-03-19 15:37:21,182 - load_test - INFO - STARTING LARGE-SCALE LOAD TEST FOR RECOMMENDATION ENGINE
+2025-03-19 15:37:21,182 - load_test - INFO - Target: http://localhost:5050/api
+2025-03-19 15:37:21,182 - load_test - INFO - Users: 5000, Products: 1000, Interactions: 10000
+2025-03-19 15:37:21,182 - load_test - INFO - Concurrency: 20, Duration: 60 seconds
+2025-03-19 15:37:21,182 - load_test - INFO - ================================================================================
+2025-03-19 15:37:21,185 - load_test - INFO - API Health: Healthy
+2025-03-19 15:37:21,185 - load_test - INFO - Models loaded: ['ncf', 'lightgcn']
+2025-03-19 15:37:21,188 - load_test - INFO - Prometheus Status: Available
+2025-03-19 15:37:21,199 - load_test - INFO - Grafana Status: Available
+2025-03-19 15:37:21,200 - load_test - INFO - Jenkins Status: Unavailable
+2025-03-19 15:37:21,200 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 15:37:21,200 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 15:37:21,200 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 15:37:21,308 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-19 15:37:21,308 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-19 15:37:21,308 - kafka.coordinator.consumer - WARNING - group_id is None: disabling auto-commit.
+2025-03-19 15:37:21,309 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 15:37:21,309 - load_test - INFO - Kafka Status: Available
+2025-03-19 15:37:21,309 - load_test - INFO - Fetching real users from the API...
+2025-03-19 15:37:21,311 - load_test - INFO - Fetched 100 real users from the API
+2025-03-19 15:37:21,311 - load_test - INFO - Generating 1000 synthetic products...
+2025-03-19 15:37:21,312 - load_test - INFO - Generated 1000 products
+2025-03-19 15:37:21,312 - load_test - INFO - Generating 10000 synthetic interactions...
+2025-03-19 15:37:21,566 - load_test - INFO - Generated 10000 interactions
+2025-03-19 15:37:21,566 - load_test - INFO - Sending 10000 events to Kafka...
+2025-03-19 15:37:21,567 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 15:37:21,567 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 15:37:21,567 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 15:37:21,677 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-19 15:37:21,677 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-19 15:37:21,683 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 15:37:21,683 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 15:37:21,684 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 15:37:21,707 - load_test - INFO - Sent 100/1000 events to Kafka
+2025-03-19 15:37:21,716 - load_test - INFO - Sent 200/1000 events to Kafka
+2025-03-19 15:37:21,731 - load_test - INFO - Sent 300/1000 events to Kafka
+2025-03-19 15:37:21,741 - load_test - INFO - Sent 400/1000 events to Kafka
+2025-03-19 15:37:21,776 - load_test - INFO - Sent 500/1000 events to Kafka
+2025-03-19 15:37:21,784 - load_test - INFO - Sent 600/1000 events to Kafka
+2025-03-19 15:37:21,793 - load_test - INFO - Sent 700/1000 events to Kafka
+2025-03-19 15:37:21,800 - load_test - INFO - Sent 800/1000 events to Kafka
+2025-03-19 15:37:21,806 - load_test - INFO - Sent 900/1000 events to Kafka
+2025-03-19 15:37:21,814 - load_test - INFO - Sent 1000/1000 events to Kafka
+2025-03-19 15:37:21,814 - load_test - INFO - Successfully sent 1000 events to Kafka
+2025-03-19 15:37:21,814 - kafka.producer.kafka - INFO - Closing the Kafka producer with 9223372036.0 secs timeout.
+2025-03-19 15:37:21,814 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 15:37:21,817 - load_test - INFO - Initial recommendations for user user_36: ['product_246', 'product_62', 'product_32', 'product_293', 'product_191', 'product_244', 'product_4', 'product_375', 'product_161', 'product_29']
+2025-03-19 15:37:21,819 - load_test - INFO - Sent purchase event for user user_36 and product product_1
+2025-03-19 15:37:21,885 - load_test - INFO - Triggered recommendations update
+2025-03-19 15:37:21,885 - load_test - INFO - Waiting for feedback loop processing...
+2025-03-19 15:37:31,892 - load_test - INFO - Updated recommendations for user user_36: ['product_814', 'product_325', 'product_348', 'product_764', 'product_606', 'product_122', 'product_860', 'product_521', 'product_989', 'product_588']
+2025-03-19 15:37:31,896 - load_test - INFO - Feedback loop test: PASS
+2025-03-19 15:37:31,896 - load_test - INFO - The recommendation changes after user interaction
+2025-03-19 15:37:31,897 - load_test - INFO - Starting load test with 20 concurrent users for 60 seconds
+2025-03-19 15:37:31,897 - load_test - INFO - Created 1 batches of users for processing
+2025-03-19 15:38:32,028 - load_test - INFO - Generating performance charts...
+2025-03-19 15:38:32,321 - load_test - INFO - Performance charts saved to load_test_results/load_test_performance.png
+2025-03-19 15:38:32,322 - load_test - INFO - Test results exported to CSV files in load_test_results
+2025-03-19 15:38:32,323 - load_test - INFO - ================================================================================
+2025-03-19 15:38:32,323 - load_test - INFO - LOAD TEST COMPLETE
+2025-03-19 15:38:32,323 - load_test - INFO - ================================================================================
+2025-03-19 15:38:32,323 - load_test - INFO - Total Requests: 13290
+2025-03-19 15:38:32,323 - load_test - INFO - Successful Requests: 13290
+2025-03-19 15:38:32,323 - load_test - INFO - Success Rate: 100.00%
+2025-03-19 15:38:32,323 - load_test - INFO - Throughput: 221.42 requests/second
+2025-03-19 15:38:32,323 - load_test - INFO - Average Response Time: 0.009 seconds
+2025-03-19 15:38:32,323 - load_test - INFO - 95th Percentile Response Time: 0.015 seconds
+2025-03-19 15:38:32,323 - load_test - INFO - System Health: 5/6 components healthy
+2025-03-19 15:38:32,323 - load_test - INFO - Results saved to load_test_results
+2025-03-19 15:38:32,323 - load_test - INFO - ================================================================================
+2025-03-19 15:40:31,216 - load_test - INFO - ================================================================================
+2025-03-19 15:40:31,216 - load_test - INFO - STARTING LARGE-SCALE LOAD TEST FOR RECOMMENDATION ENGINE
+2025-03-19 15:40:31,216 - load_test - INFO - Target: http://localhost:5050/api
+2025-03-19 15:40:31,217 - load_test - INFO - Users: 100000, Products: 10000, Interactions: 1000000
+2025-03-19 15:40:31,217 - load_test - INFO - Concurrency: 50, Duration: 300 seconds
+2025-03-19 15:40:31,217 - load_test - INFO - ================================================================================
+2025-03-19 15:40:31,221 - load_test - INFO - API Health: Healthy
+2025-03-19 15:40:31,221 - load_test - INFO - Models loaded: ['ncf', 'lightgcn']
+2025-03-19 15:40:31,227 - load_test - INFO - Prometheus Status: Available
+2025-03-19 15:40:31,235 - load_test - INFO - Grafana Status: Available
+2025-03-19 15:40:31,236 - load_test - INFO - Jenkins Status: Unavailable
+2025-03-19 15:40:31,237 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 15:40:31,237 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 15:40:31,237 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 15:40:31,344 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-19 15:40:31,345 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-19 15:40:31,345 - kafka.coordinator.consumer - WARNING - group_id is None: disabling auto-commit.
+2025-03-19 15:40:31,345 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.0.6, node_id=bootstrap-0 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 15:40:31,345 - load_test - INFO - Kafka Status: Available
+2025-03-19 15:40:31,345 - load_test - INFO - Fetching real users from the API...
+2025-03-19 15:40:31,348 - load_test - INFO - Fetched 100 real users from the API
+2025-03-19 15:40:31,348 - load_test - INFO - Generating 10000 synthetic products...
+2025-03-19 15:40:31,355 - load_test - INFO - Generated 10000 products
+2025-03-19 15:40:31,355 - load_test - INFO - Generating 1000000 synthetic interactions...
+2025-03-19 15:41:57,114 - load_test - INFO - Generated 1000000 interactions
+2025-03-19 15:41:57,114 - load_test - INFO - Sending 1000000 events to Kafka...
+2025-03-19 15:41:57,115 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 15:41:57,115 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-19 15:41:57,116 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 15:41:57,227 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-19 15:41:57,227 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-19 15:41:57,233 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: connecting to localhost:29092 [('::1', 29092, 0, 0) IPv6]
+2025-03-19 15:41:57,233 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connecting> [IPv6 ('::1', 29092, 0, 0)]>: Connection complete.
+2025-03-19 15:41:57,234 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 15:41:57,257 - load_test - INFO - Sent 100/1000 events to Kafka
+2025-03-19 15:41:57,273 - load_test - INFO - Sent 200/1000 events to Kafka
+2025-03-19 15:41:57,287 - load_test - INFO - Sent 300/1000 events to Kafka
+2025-03-19 15:41:57,296 - load_test - INFO - Sent 400/1000 events to Kafka
+2025-03-19 15:41:57,307 - load_test - INFO - Sent 500/1000 events to Kafka
+2025-03-19 15:41:57,318 - load_test - INFO - Sent 600/1000 events to Kafka
+2025-03-19 15:41:57,328 - load_test - INFO - Sent 700/1000 events to Kafka
+2025-03-19 15:41:57,338 - load_test - INFO - Sent 800/1000 events to Kafka
+2025-03-19 15:41:57,346 - load_test - INFO - Sent 900/1000 events to Kafka
+2025-03-19 15:41:57,354 - load_test - INFO - Sent 1000/1000 events to Kafka
+2025-03-19 15:41:57,354 - load_test - INFO - Successfully sent 1000 events to Kafka
+2025-03-19 15:41:57,354 - kafka.producer.kafka - INFO - Closing the Kafka producer with 9223372036.0 secs timeout.
+2025-03-19 15:41:57,354 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=localhost:29092 <connected> [IPv6 ('::1', 29092, 0, 0)]>: Closing connection. 
+2025-03-19 15:41:57,360 - load_test - INFO - Initial recommendations for user user_36: ['product_246', 'product_62', 'product_32', 'product_293', 'product_191', 'product_244', 'product_4', 'product_375', 'product_161', 'product_29']
+2025-03-19 15:41:57,363 - load_test - INFO - Sent purchase event for user user_36 and product product_1
+2025-03-19 15:41:57,455 - load_test - INFO - Triggered recommendations update
+2025-03-19 15:41:57,455 - load_test - INFO - Waiting for feedback loop processing...
+2025-03-19 15:42:07,467 - load_test - INFO - Updated recommendations for user user_36: ['product_325', 'product_814', 'product_881', 'product_310', 'product_348', 'product_622', 'product_996', 'product_764', 'product_122', 'product_755']
+2025-03-19 15:42:07,471 - load_test - INFO - Feedback loop test: PASS
+2025-03-19 15:42:07,471 - load_test - INFO - The recommendation changes after user interaction
+2025-03-19 15:42:07,471 - load_test - INFO - Starting load test with 50 concurrent users for 300 seconds
+2025-03-19 15:42:07,471 - load_test - INFO - Created 1 batches of users for processing
+2025-03-19 15:47:09,911 - load_test - INFO - Generating performance charts...
+2025-03-19 15:47:10,420 - load_test - INFO - Performance charts saved to load_test_results/load_test_performance.png
+2025-03-19 15:47:10,422 - load_test - INFO - Test results exported to CSV files in load_test_results
+2025-03-19 15:47:10,422 - load_test - INFO - ================================================================================
+2025-03-19 15:47:10,422 - load_test - INFO - LOAD TEST COMPLETE
+2025-03-19 15:47:10,422 - load_test - INFO - ================================================================================
+2025-03-19 15:47:10,422 - load_test - INFO - Total Requests: 108000
+2025-03-19 15:47:10,422 - load_test - INFO - Successful Requests: 108000
+2025-03-19 15:47:10,422 - load_test - INFO - Success Rate: 100.00%
+2025-03-19 15:47:10,422 - load_test - INFO - Throughput: 359.78 requests/second
+2025-03-19 15:47:10,424 - load_test - INFO - Average Response Time: 0.026 seconds
+2025-03-19 15:47:10,427 - load_test - INFO - 95th Percentile Response Time: 0.090 seconds
+2025-03-19 15:47:10,427 - load_test - INFO - System Health: 5/6 components healthy
+2025-03-19 15:47:10,427 - load_test - INFO - Results saved to load_test_results
+2025-03-19 15:47:10,427 - load_test - INFO - ================================================================================

@@ -1,0 +1,132 @@
+# Database configuration
+database:
+  host: localhost
+  port: 5432
+  database: amazon_rec_db
+  user: postgres
+  password: postgres
+  schema: amazon_rec
+  pool_size: 5
+  max_overflow: 10
+  pool_recycle: 3600
+
+# Kafka configuration
+kafka:
+  bootstrap_servers:
+    - kafka:9092
+  consumer_group_id: amazon-recommendation-service
+  auto_offset_reset: earliest
+  enable_auto_commit: True
+  topics:
+    amazon_reviews: amazon-reviews
+    product_events: product-events
+    recommendation_requests: recommendation-requests
+    model_metrics: model-metrics
+    system_metrics: system-metrics
+
+# API configuration
+api:
+  host: 0.0.0.0
+  port: 8000
+  debug: False
+  log_level: info
+  cors_origins:
+    - "*"
+  rate_limit:
+    requests_per_minute: 100
+
+# Model configuration
+model:
+  default_model: hybrid
+  training:
+    random_state: 42
+    test_size: 0.2
+    validation_size: 0.25
+  collaborative_filtering:
+    num_factors: 50
+    epochs: 30
+    learning_rate: 0.01
+    regularization: 0.02
+  content_based:
+    min_df: 0.01
+    max_df: 0.85
+    ngram_range: [1, 2]
+  hybrid:
+    collab_weight: 0.7
+    content_weight: 0.3
+
+# MLflow configuration
+mlflow:
+  tracking_uri: http://mlflow:5000
+  experiment_name: amazon-recommendations
+  model_registry_uri: http://mlflow:5000
+
+# Monitoring configuration
+monitoring:
+  prometheus:
+    enabled: True
+    port: 8001
+  log_level: info
+  metrics_interval_seconds: 60
+
+# Data configuration
+data:
+  raw_data_path: /app/data/raw
+  processed_data_path: /app/data/processed
+  interim_data_path: /app/data/interim
+  sample_size: 100000
+
+# Feature engineering configuration
+features:
+  text_features:
+    - review_text
+    - summary
+  numerical_features:
+    - rating
+    - votes
+  categorical_features:
+    - category
+    - subcategory
+  temporal_features:
+    - review_date
+
+# Recommendation configuration
+recommendations:
+  max_recommendations: 10
+  min_recommendations: 5
+  fallback_strategy: popularity
+  diversity_weight: 0.2
+  novelty_weight: 0.1
+  cache_ttl_seconds: 300
+
+# A/B testing configuration
+ab_testing:
+  default_experiment_time_days: 14
+  min_sample_size: 1000
+  significance_level: 0.05
+  metrics:
+    - ctr
+    - conversion_rate
+    - average_order_value
+
+# Security configuration
+security:
+  api_key_header: X-API-Key
+  jwt:
+    secret_key: ${JWT_SECRET:change_me_in_production}
+    algorithm: HS256
+    access_token_expire_minutes: 60
+    refresh_token_expire_days: 7
+
+# Logging configuration
+logging:
+  level: INFO
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"
+  file: logs/amazon_rec.log
+  max_size_mb: 10
+  backup_count: 5
+
+# Environment-specific settings (overridden by local_config.yaml)
+environment:
+  name: development
