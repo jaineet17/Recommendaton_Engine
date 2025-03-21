@@ -6,7 +6,7 @@ import faiss
 import json
 from datetime import datetime
 from src.kafka.producer import get_producer
-from src.config.mlflow_config import MLFlowConfig
+from src.utils.config.mlflow_config import MLFlowConfig
 from src.caching.recommendation_cache import RecommendationCache
 
 logger = logging.getLogger(__name__)

@@ -1,0 +1,35 @@
+# ============================================================
+# Amazon Recommendation Engine - Development Configuration
+# ============================================================
+# This file contains configuration overrides specific to
+# the development environment
+
+environment: development
+
+api:
+  debug: true
+  threads: 2
+
+database:
+  host: localhost
+  port: 5432
+
+kafka:
+  bootstrap_servers: localhost:9092
+
+logging:
+  level: DEBUG
+  console: true
+
+models:
+  # Use smaller cache sizes in development
+  cache_size: 1000
+  
+  # Load fewer models during development for faster startup
+  preload_models:
+    - lightgcn
+
+# Enable mock implementations for services not available locally
+mock:
+  kafka: true
+  recommendation_cache: false 

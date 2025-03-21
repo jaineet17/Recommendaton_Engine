@@ -26,13 +26,14 @@ logger = logging.getLogger(__name__)
 
 # Try to import the feedback loop system
 try:
-    import feedback_loop
-    events_storage = feedback_loop.get_events_storage()
+    from src.feedback.feedback_loop import get_events_storage, store_event, handle_new_user, \
+        get_cold_start_recommendations, update_recommendations
+    events_storage = get_events_storage()
     recommendation_cache = events_storage['recommendation_cache']
-    logger.info("Imported feedback_loop module")
+    logger.info("Imported feedback_loop module from src/feedback")
     USE_FEEDBACK_LOOP = True
 except ImportError as e:
-    logger.warning(f"Could not import feedback_loop module: {e}. Feedback loop will be disabled")
+    logger.warning(f"Could not import feedback_loop module from src/feedback: {e}. Feedback loop will be disabled")
     recommendation_cache = {}
     USE_FEEDBACK_LOOP = False
 
@@ -232,7 +233,7 @@ def track_event(user_id, product_id, event_type, metadata=None):
             'session_id': session_id,
             'metadata': metadata or {}
         }
-        feedback_loop.store_event(event)
+        store_event(event)
     
     # Then send to Kafka if available
     if not KAFKA_AVAILABLE or not event_producer:
@@ -266,8 +267,8 @@ def handle_new_user(user_id):
     if not USE_FEEDBACK_LOOP:
         return False
     
-    # Use the feedback_loop module to handle the new user
-    return feedback_loop.handle_new_user(user_id, models)
+    # Handle the new user with the imported function
+    return handle_new_user(user_id, models)
 
 def get_cold_start_recommendations(model_name, top_n=10):
     """
@@ -283,7 +284,7 @@ def get_cold_start_recommendations(model_name, top_n=10):
     logger.info(f"Getting cold-start recommendations for model {model_name}, top_n={top_n}")
     
     if USE_FEEDBACK_LOOP:
-        return feedback_loop.get_cold_start_recommendations(popular_products, model_name, top_n)
+        return get_cold_start_recommendations(popular_products, model_name, top_n)
     
     # If feedback loop is not available, use pre-computed popular products
     if popular_products:
@@ -718,7 +719,7 @@ def update_recommendations():
     
     try:
         # Run the update
-        updated_users = feedback_loop.update_recommendations(models, cache_size=1000)
+        updated_users = update_recommendations(models, cache_size=1000)
         
         return jsonify({
             "status": "success",

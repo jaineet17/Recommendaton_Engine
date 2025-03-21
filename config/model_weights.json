@@ -1,8 +1,0 @@
-{
-  "lightgcn": 0.5,
-  "product_transformer": 0.8,
-  "product_transformer_onnx": 0.8,
-  "user_history": 0.3,
-  "popularity": 0.1,
-  "diversity": 0.2
-}

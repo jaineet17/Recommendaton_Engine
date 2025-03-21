@@ -1,5 +1,6 @@
 import os
 import torch
+import torch.nn as nn
 import numpy as np
 import logging
 from datetime import datetime
@@ -8,7 +9,7 @@ from transformers import AutoModel, AutoTokenizer
 import onnxruntime as ort
 from src.kafka.consumer import BaseConsumer
 from src.kafka.producer import get_producer
-from src.config.mlflow_config import MLFlowConfig
+from src.utils.config.mlflow_config import MLFlowConfig
 from src.caching.recommendation_cache import RecommendationCache
 from src.models.onnx_utils import load_onnx_model
 

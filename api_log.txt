@@ -1,7 +1,0 @@
- * Tip: There are .env files present. Install python-dotenv to use them.
-Python path in API: ['/Users/jaineet/Desktop/Recommendation_Engine', '/opt/anaconda3/envs/movie-rec/lib/python312.zip', '/opt/anaconda3/envs/movie-rec/lib/python3.12', '/opt/anaconda3/envs/movie-rec/lib/python3.12/lib-dynload', '/opt/anaconda3/envs/movie-rec/lib/python3.12/site-packages', '/Users/jaineet/Desktop/Recommendation_Engine']
-Working directory in API: /Users/jaineet/Desktop/Recommendation_Engine
- * Serving Flask app 'src.api.app'
- * Debug mode: on
-Address already in use
-Port 5050 is in use by another program. Either identify and stop that program, or start the server with a different port.

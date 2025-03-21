@@ -1,0 +1,59 @@
+# ============================================================
+# Amazon Recommendation Engine - Production Configuration
+# ============================================================
+# This file contains configuration overrides specific to
+# the production environment
+
+environment: production
+
+api:
+  debug: false
+  threads: 8
+  max_content_length: 33554432  # 32MB
+  cors_origins:
+    - "https://yourproductionsite.com"
+    - "https://api.yourproductionsite.com"
+
+database:
+  host: postgres
+  port: 5432
+  dbname: recommender
+  pool_size: 20
+  max_overflow: 30
+
+redis:
+  host: redis
+  port: 6379
+
+kafka:
+  bootstrap_servers: kafka:29092
+  connections:
+    max_in_flight_requests_per_connection: 10
+    message_timeout_ms: 60000  # 60 seconds
+    session_timeout_ms: 60000  # 60 seconds
+
+logging:
+  level: INFO
+  console: false
+  file: /var/log/recommender/api.log
+  max_size: 52428800  # 50MB
+  backup_count: 10
+
+models:
+  path: /app/data/models
+  cache_size: 50000
+  update_interval: 14400  # 4 hours
+  preload_models:
+    - lightgcn
+    - ncf
+    - mf
+    - content_based
+
+metrics:
+  enable: true
+  collection_interval: 30  # 30 seconds
+
+# Disable all mock implementations in production
+mock:
+  kafka: false
+  recommendation_cache: false 

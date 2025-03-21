@@ -1,24 +1,27 @@
 """
-Model factory for the Amazon recommendation system.
+Model factory for the recommendation system.
 
 This module provides a factory for creating and managing recommendation models.
 It simplifies the instantiation of different model types and handles loading and
-saving models.
+saving models, as well as handling cold-start scenarios.
 """
 
-import logging
 import os
-from typing import Any, Dict, List, Optional, Tuple, Union
 import pickle
 from datetime import datetime
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 import pandas as pd
+import numpy as np
 
 from src.data.database import load_config
 from src.models.base_model import RecommendationModel
+from src.models.cold_start import ColdStartHandler
+from src.caching.recommendation_cache import RecommendationCache
+from src.utils.logging_config import get_logger
 
 # Set up logging
-logger = logging.getLogger(__name__)
+logger = get_logger('models.factory')
 
 # Load configuration
 config = load_config()
@@ -29,8 +32,8 @@ class ModelFactory:
     """
     Factory for creating and managing recommendation models.
     
-    This class provides methods to instantiate different recommendation models and
-    to load pre-trained models from disk.
+    This class provides methods to instantiate different recommendation models,
+    load pre-trained models from disk, and handle cold-start scenarios for new users and items.
     """
     
     def __init__(self):
@@ -38,6 +41,17 @@ class ModelFactory:
         self.models = {}
         self.default_model = model_config.get('default_model', 'hybrid')
         self.model_paths = {}
+        
+        # Initialize cold-start handler
+        self.cold_start_handler = ColdStartHandler(
+            fallback_strategies=model_config.get('cold_start_strategies', 
+                                               ["popularity", "category", "diversity", "random"]),
+            popularity_threshold=model_config.get('popularity_threshold', 10),
+            max_items_to_cache=model_config.get('max_items_to_cache', 1000)
+        )
+        
+        # Initialize recommendation cache
+        self.cache = RecommendationCache()
     
     def create_model(self, model_type: str, **kwargs) -> RecommendationModel:
         """
@@ -487,6 +501,120 @@ def train_model(model_type: str, train_data: pd.DataFrame,
     """
     return model_factory.train_model(model_type, train_data, validation_data, name, save_path, **kwargs)
 
+
+    def get_cached_recommendations(self, user_id: str, model_name: str, 
+                               context: Optional[Dict] = None, limit: int = 10,
+                               use_cache: bool = True) -> Tuple[List[Dict], bool]:
+        """
+        Get recommendations, using cache if available.
+        
+        Args:
+            user_id: User ID
+            model_name: Model name
+            context: Recommendation context
+            limit: Number of recommendations
+            use_cache: Whether to use cache
+            
+        Returns:
+            Tuple of (recommendations, was_cached)
+        """
+        # Try to get from cache first if enabled
+        if use_cache:
+            cached = self.cache.get_recommendations(user_id, model_name, context, limit)
+            if cached:
+                logger.debug(f"Cache hit for user {user_id} with model {model_name}")
+                return cached.get('recommendations', []), True
+        
+        # Not in cache, get from model
+        model = self.get_model(model_name)
+        if model is None:
+            logger.warning(f"Model {model_name} not found, using default")
+            model = self.get_model()
+            if model is None:
+                logger.error("No models available")
+                return [], False
+        
+        # Check if user is in model's user mapping
+        is_cold_start = False
+        if hasattr(model, 'user_map') and user_id not in model.user_map:
+            is_cold_start = True
+        
+        # Generate recommendations
+        if is_cold_start:
+            logger.info(f"Cold-start scenario for user {user_id}, using fallback strategy")
+            items = self.cold_start_handler.get_recommendations(user_info=context, count=limit)
+            recommendations = [
+                {'product_id': item, 'score': 1.0 - (i * 0.01)}  # Decreasing scores
+                for i, item in enumerate(items)
+            ]
+        else:
+            try:
+                recommendations = model.predict(user_id, limit=limit, context=context)
+            except Exception as e:
+                logger.error(f"Error getting recommendations: {e}")
+                recommendations = []
+        
+        # Cache results if not empty and cache is enabled
+        if recommendations and use_cache:
+            # Determine user activity level for TTL
+            if context and 'recent_activity' in context:
+                activity_count = context.get('recent_activity', 0)
+                user_activity = 'active' if activity_count > 5 else 'normal'
+            else:
+                user_activity = 'normal'
+                
+            self.cache.cache_recommendations(
+                user_id, model_name, recommendations, context, limit, user_activity
+            )
+        
+        return recommendations, False
+    
+    def refresh_cold_start_data(self, ratings_df: pd.DataFrame, 
+                               item_metadata: Optional[Dict[str, Dict]] = None,
+                               model: Optional[RecommendationModel] = None) -> None:
+        """
+        Refresh cold-start data with latest ratings and metadata.
+        
+        Args:
+            ratings_df: DataFrame with user-item interactions
+            item_metadata: Item metadata dictionary
+            model: Model with latent factors (optional)
+        """
+        try:
+            # Calculate item popularity
+            item_counts = ratings_df.groupby('product_id').size().to_dict()
+            
+            # Update cold-start handler with popularity data
+            self.cold_start_handler.build_popularity_cache(item_counts, ratings_df)
+            
+            # Update category cache if metadata available
+            if item_metadata:
+                self.cold_start_handler.build_category_cache(item_metadata)
+            
+            # Update diversity cache if model available with factors
+            if model and hasattr(model, 'item_factors') and hasattr(model, 'product_map'):
+                self.cold_start_handler.build_diversity_cache(
+                    model.item_factors, model.product_map
+                )
+                
+            logger.info("Cold-start data refreshed successfully")
+        except Exception as e:
+            logger.error(f"Error refreshing cold-start data: {e}")
+    
+    def invalidate_cache(self, user_id: Optional[str] = None, 
+                        model_name: Optional[str] = None) -> None:
+        """
+        Invalidate recommendation cache for a user or model.
+        
+        Args:
+            user_id: User ID to invalidate (or None for all users)
+            model_name: Model name to invalidate (or None for all models)
+        """
+        try:
+            self.cache.invalidate_cache(user_id, model_name)
+            logger.info(f"Invalidated cache for user={user_id}, model={model_name}")
+        except Exception as e:
+            logger.error(f"Error invalidating cache: {e}")
 
 # Example usage
 if __name__ == "__main__":

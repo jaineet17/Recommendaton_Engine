@@ -1,16 +1,19 @@
 version: '3.8'
 
+# Unified Docker Compose configuration for Amazon Recommendation Engine
+# This file combines development and production configurations with clear documentation
+
 services:
-  # PostgreSQL database
+  # Database services
   postgres:
-    image: postgres:14
-    container_name: amazon-rec-postgres
-    ports:
-      - "5432:5432"
+    image: postgres:14.1-alpine
+    restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: amazon_rec_db
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - POSTGRES_DB=${POSTGRES_DB:-recommender}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -18,136 +21,78 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-  
-  # Zookeeper for Kafka
+    networks:
+      - recommender_network
+
+  # Caching service
+  redis:
+    image: redis:7.0-alpine
+    restart: always
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --save 60 1 --loglevel warning
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - recommender_network
+
+  # Message queue services
   zookeeper:
     image: confluentinc/cp-zookeeper:7.3.0
-    container_name: amazon-rec-zookeeper
-    ports:
-      - "2181:2181"
+    restart: always
     environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
+      - ZOOKEEPER_CLIENT_PORT=2181
+      - ZOOKEEPER_TICK_TIME=2000
+    ports:
+      - "${ZOOKEEPER_PORT:-2181}:2181"
+    volumes:
+      - zookeeper_data:/var/lib/zookeeper/data
+      - zookeeper_log:/var/lib/zookeeper/log
     healthcheck:
       test: ["CMD", "nc", "-z", "localhost", "2181"]
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - recommender_network
 
-  # Kafka broker
   kafka:
     image: confluentinc/cp-kafka:7.3.0
-    container_name: amazon-rec-kafka
+    restart: always
     depends_on:
-      - zookeeper
+      zookeeper:
+        condition: service_healthy
     ports:
-      - "9092:9092"
-      - "29092:29092"
+      - "${KAFKA_PORT:-9092}:9092"
+      - "${KAFKA_INTERNAL_PORT:-29092}:29092"
     environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
-    healthcheck:
-      test: ["CMD", "kafka-topics", "--list", "--bootstrap-server", "localhost:9092"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  # Schema Registry for Kafka
-  schema-registry:
-    image: confluentinc/cp-schema-registry:7.3.0
-    container_name: amazon-rec-schema-registry
-    depends_on:
-      - kafka
-    ports:
-      - "8081:8081"
-    environment:
-      SCHEMA_REGISTRY_HOST_NAME: schema-registry
-      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka:9092
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8081/subjects"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  # Kafka Connect for data integration
-  kafka-connect:
-    image: confluentinc/cp-kafka-connect:7.3.0
-    container_name: amazon-rec-kafka-connect
-    depends_on:
-      - kafka
-      - schema-registry
-    ports:
-      - "8083:8083"
-    environment:
-      CONNECT_BOOTSTRAP_SERVERS: kafka:9092
-      CONNECT_REST_PORT: 8083
-      CONNECT_GROUP_ID: "amazon-connect"
-      CONNECT_CONFIG_STORAGE_TOPIC: "amazon-connect-configs"
-      CONNECT_OFFSET_STORAGE_TOPIC: "amazon-connect-offsets"
-      CONNECT_STATUS_STORAGE_TOPIC: "amazon-connect-status"
-      CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.storage.StringConverter"
-      CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
-      CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
-      CONNECT_REST_ADVERTISED_HOST_NAME: "kafka-connect"
-      CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
+      - KAFKA_BROKER_ID=1
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS=0
+      - KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1
+      - KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
     volumes:
-      - kafka_connect_data:/usr/share/confluent-hub-components
+      - kafka_data:/var/lib/kafka/data
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8083/connectors"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      test: ["CMD", "kafka-topics", "--bootstrap-server", "localhost:9092", "--list"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - recommender_network
 
-  # KSQL for stream processing
-  ksqldb:
-    image: confluentinc/ksqldb-server:0.28.2
-    container_name: amazon-rec-ksqldb
-    depends_on:
-      - kafka
-      - schema-registry
-    ports:
-      - "8088:8088"
-    environment:
-      KSQL_BOOTSTRAP_SERVERS: kafka:9092
-      KSQL_LISTENERS: http://0.0.0.0:8088
-      KSQL_KSQL_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8088/info"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  # Control Center for monitoring Kafka
-  control-center:
-    image: confluentinc/cp-enterprise-control-center:7.3.0
-    container_name: amazon-rec-control-center
-    depends_on:
-      - kafka
-      - schema-registry
-    ports:
-      - "9021:9021"
-    environment:
-      CONTROL_CENTER_BOOTSTRAP_SERVERS: kafka:9092
-      CONTROL_CENTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-      CONTROL_CENTER_KSQL_KSQLDB_URL: http://ksqldb:8088
-      CONTROL_CENTER_KSQL_KSQLDB_ADVERTISED_URL: http://ksqldb:8088
-      CONTROL_CENTER_REPLICATION_FACTOR: 1
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9021/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  # Prometheus for metrics collection
+  # Monitoring services
   prometheus:
-    image: prom/prometheus:v2.38.0
-    container_name: amazon-rec-prometheus
-    ports:
-      - "9090:9090"
+    image: prom/prometheus:v2.42.0
+    restart: always
     volumes:
       - ./monitoring/prometheus:/etc/prometheus
       - prometheus_data:/prometheus
@@ -156,174 +101,100 @@ services:
       - '--storage.tsdb.path=/prometheus'
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
       - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - "${PROMETHEUS_PORT:-9090}:9090"
     healthcheck:
       test: ["CMD", "wget", "-q", "--spider", "http://localhost:9090/-/healthy"]
       interval: 30s
-      timeout: 10s
+      timeout: 30s
       retries: 3
+    networks:
+      - recommender_network
 
-  # Grafana for visualization
   grafana:
-    image: grafana/grafana:9.1.0
-    container_name: amazon-rec-grafana
+    image: grafana/grafana:9.4.3
+    restart: always
+    depends_on:
+      - prometheus
     ports:
-      - "3000:3000"
+      - "${GRAFANA_PORT:-3000}:3000"
     volumes:
       - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
       - grafana_data:/var/lib/grafana
     environment:
-      GF_SECURITY_ADMIN_USER: admin
-      GF_SECURITY_ADMIN_PASSWORD: admin
-      GF_USERS_ALLOW_SIGN_UP: "false"
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
     healthcheck:
       test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000/api/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - recommender_network
 
-  # API service
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: amazon-rec-api
-    depends_on:
-      - postgres
-      - kafka
-    ports:
-      - "5050:5050"
-    environment:
-      CONFIG_PATH: /app/config/config.yaml
-      FLASK_APP: src.api.app
-      FLASK_ENV: production
-      PYTHONUNBUFFERED: 1
-    volumes:
-      - ./models:/app/models
-      - ./config:/app/config
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5050/api/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-    restart: unless-stopped
-
-  # Frontend service
-  frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile.frontend
-    container_name: amazon-rec-frontend
-    depends_on:
-      - api
-    ports:
-      - "8000:8000"
-    environment:
-      API_URL: http://api:5050
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-    restart: unless-stopped
-
-  # Stream processor service
-  stream-processor:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: amazon-rec-stream-processor
-    depends_on:
-      - kafka
-      - postgres
-    environment:
-      CONFIG_PATH: /app/config/config.yaml
-      PYTHONUNBUFFERED: 1
-      SERVICE_TYPE: stream_processor
-    volumes:
-      - ./models:/app/models
-      - ./config:/app/config
-    command: python -m src.kafka.stream_processor
-    restart: unless-stopped
-
-  # Metrics exporter service
-  metrics-exporter:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: amazon-rec-metrics-exporter
-    depends_on:
-      - api
-      - prometheus
-    ports:
-      - "8001:8001"
-    environment:
-      API_URL: http://api:5050
-      PYTHONUNBUFFERED: 1
-    volumes:
-      - ./models:/app/models
-      - ./config:/app/config
-    command: python export_metrics.py --api-url http://api:5050
-    restart: unless-stopped
-
-  # MLflow for Model Registry
+  # ML tracking service
   mlflow:
-    image: ghcr.io/mlflow/mlflow:v2.9.2
-    container_name: amazon-rec-mlflow
+    image: ghcr.io/mlflow/mlflow:v2.3.0
+    restart: always
     ports:
-      - "5000:5000"
+      - "${MLFLOW_PORT:-5001}:5000"
     environment:
-      - MLFLOW_S3_ENDPOINT_URL=http://minio:9000
-      - AWS_ACCESS_KEY_ID=minioadmin
-      - AWS_SECRET_ACCESS_KEY=minioadmin
-    command: >
-      mlflow server
-      --host 0.0.0.0
-      --port 5000
-      --backend-store-uri postgresql://postgres:postgres@postgres:5432/amazon_rec_db
-      --default-artifact-root s3://mlflow
-    depends_on:
-      - postgres
-      - minio
-    restart: unless-stopped
-
-  # MinIO for artifact storage
-  minio:
-    image: minio/minio:RELEASE.2023-11-11T08-14-41Z
-    container_name: amazon-rec-minio
-    ports:
-      - "9000:9000"
-      - "9001:9001"
-    environment:
-      - MINIO_ROOT_USER=minioadmin
-      - MINIO_ROOT_PASSWORD=minioadmin
-    command: server /data --console-address ":9001"
+      - MLFLOW_TRACKING_URI=http://localhost:5001
+      - MLFLOW_S3_ENDPOINT_URL=${MLFLOW_S3_ENDPOINT_URL:-}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-}
+    command: mlflow server --host 0.0.0.0
     volumes:
-      - minio_data:/data
+      - mlflow_data:/mlflow
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:5000/"]
       interval: 30s
-      timeout: 20s
+      timeout: 10s
       retries: 3
-    restart: unless-stopped
+    networks:
+      - recommender_network
 
-  # MinIO Initialize
-  minio-init:
-    image: minio/mc:RELEASE.2023-11-11T08-40-00Z
-    container_name: amazon-rec-minio-init
-    depends_on:
-      - minio
-    entrypoint: >
-      /bin/sh -c "
-        until mc config host add minio http://minio:9000 minioadmin minioadmin; do sleep 1; done;
-        mc mb --ignore-existing minio/mlflow;
-        mc policy set download minio/mlflow;
-        exit 0;
-      "
-    restart: on-failure
+  # Recommendation API (uncomment to enable)
+  # api:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   restart: always
+  #   depends_on:
+  #     - postgres
+  #     - redis
+  #     - kafka
+  #   ports:
+  #     - "${API_PORT:-5050}:5050"
+  #   environment:
+  #     - ENVIRONMENT=${ENVIRONMENT:-development}
+  #     - CONFIG_FILE=${CONFIG_FILE:-config/config.yaml}
+  #     - DATABASE_URL=postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-recommender}
+  #     - REDIS_URL=redis://redis:6379/0
+  #     - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+  #     - MODEL_PATH=${MODEL_PATH:-/app/data/models}
+  #     - LOG_LEVEL=${LOG_LEVEL:-INFO}
+  #   volumes:
+  #     - ./:/app
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:5050/api/health"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+  #   networks:
+  #     - recommender_network
 
 volumes:
   postgres_data:
+  redis_data:
+  zookeeper_data:
+  zookeeper_log:
+  kafka_data:
   prometheus_data:
   grafana_data:
-  kafka_connect_data:
-  minio_data: 
+  mlflow_data:
+
+networks:
+  recommender_network:
+    driver: bridge 

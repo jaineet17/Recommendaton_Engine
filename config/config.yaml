@@ -1,132 +1,140 @@
-# Database configuration
+# ============================================================
+# Amazon Recommendation Engine - Base Configuration
+# ============================================================
+# This is the base configuration file for all environments
+# Environment-specific overrides should be placed in:
+# - development.yaml, staging.yaml, or production.yaml
+
+# ============================================================
+# General Settings
+# ============================================================
+environment: development  # development, staging, production
+
+# ============================================================
+# API Settings
+# ============================================================
+api:
+  host: 0.0.0.0
+  port: 5050
+  threads: 4
+  debug: false
+  request_timeout: 30  # seconds
+  max_content_length: 16777216  # 16MB in bytes
+  enable_cors: true
+  cors_origins:
+    - "http://localhost:3000"
+    - "http://localhost:3001"
+
+# ============================================================
+# Database Settings
+# ============================================================
 database:
   host: localhost
   port: 5432
-  database: amazon_rec_db
   user: postgres
   password: postgres
-  schema: amazon_rec
-  pool_size: 5
-  max_overflow: 10
-  pool_recycle: 3600
+  dbname: recommender
+  pool_size: 10
+  max_overflow: 20
+  pool_timeout: 30
 
-# Kafka configuration
+# ============================================================
+# Redis Cache Settings
+# ============================================================
+redis:
+  host: localhost
+  port: 6379
+  db: 0
+  password: null  # Set to null for no password
+  socket_timeout: 5
+  key_prefix: "rec:"
+  ttl: 3600  # default cache TTL in seconds (1 hour)
+
+# ============================================================
+# Kafka Settings
+# ============================================================
 kafka:
-  bootstrap_servers:
-    - kafka:9092
-  consumer_group_id: amazon-recommendation-service
-  auto_offset_reset: earliest
-  enable_auto_commit: True
+  bootstrap_servers: localhost:9092
+  enable: true  # Set to false to disable Kafka integration
   topics:
-    amazon_reviews: amazon-reviews
     product_events: product-events
-    recommendation_requests: recommendation-requests
-    model_metrics: model-metrics
-    system_metrics: system-metrics
+    recommendations: recommendations
+    metrics: metrics
+  consumer_group: recommender-api
+  auto_offset_reset: earliest
+  connections:
+    max_in_flight_requests_per_connection: 5
+    message_timeout_ms: 30000  # 30 seconds
+    session_timeout_ms: 30000  # 30 seconds
 
-# API configuration
-api:
-  host: 0.0.0.0
-  port: 8000
-  debug: False
-  log_level: info
-  cors_origins:
-    - "*"
-  rate_limit:
-    requests_per_minute: 100
+# ============================================================
+# Model Settings
+# ============================================================
+models:
+  path: data/models
+  cache_size: 10000  # Number of user vectors to keep in memory
+  default_model: lightgcn  # Default model to use
+  max_recommendations: 100
+  default_recommendations: 10
+  score_threshold: 0.01  # Minimum score to include in recommendations
+  cold_start_strategy: popular  # popular, random, content-based
+  update_interval: 3600  # How often to reload models (seconds)
+  preload_models:  # Models to load at startup
+    - lightgcn
+    - ncf
+    - mf
+  ensemble:
+    weights:
+      lightgcn: 0.35
+      ncf: 0.25
+      mf: 0.25
+      content_based: 0.15
 
-# Model configuration
-model:
-  default_model: hybrid
-  training:
-    random_state: 42
-    test_size: 0.2
-    validation_size: 0.25
-  collaborative_filtering:
-    num_factors: 50
-    epochs: 30
-    learning_rate: 0.01
-    regularization: 0.02
-  content_based:
-    min_df: 0.01
-    max_df: 0.85
-    ngram_range: [1, 2]
-  hybrid:
-    collab_weight: 0.7
-    content_weight: 0.3
+# ============================================================
+# Feedback Loop Settings
+# ============================================================
+feedback_loop:
+  enable: true
+  window_size: 48  # hours
+  minimum_events: 10  # Minimum number of events to process
+  update_interval: 3600  # seconds between updates
+  event_weights:
+    click: 1.0
+    view: 0.5
+    purchase: 5.0
+    add_to_cart: 2.0
+    rate: 3.0
 
-# MLflow configuration
-mlflow:
-  tracking_uri: http://mlflow:5000
-  experiment_name: amazon-recommendations
-  model_registry_uri: http://mlflow:5000
-
-# Monitoring configuration
-monitoring:
-  prometheus:
-    enabled: True
-    port: 8001
-  log_level: info
-  metrics_interval_seconds: 60
-
-# Data configuration
-data:
-  raw_data_path: /app/data/raw
-  processed_data_path: /app/data/processed
-  interim_data_path: /app/data/interim
-  sample_size: 100000
-
-# Feature engineering configuration
-features:
-  text_features:
-    - review_text
-    - summary
-  numerical_features:
-    - rating
-    - votes
-  categorical_features:
-    - category
-    - subcategory
-  temporal_features:
-    - review_date
-
-# Recommendation configuration
-recommendations:
-  max_recommendations: 10
-  min_recommendations: 5
-  fallback_strategy: popularity
-  diversity_weight: 0.2
-  novelty_weight: 0.1
-  cache_ttl_seconds: 300
-
-# A/B testing configuration
-ab_testing:
-  default_experiment_time_days: 14
-  min_sample_size: 1000
-  significance_level: 0.05
-  metrics:
-    - ctr
-    - conversion_rate
-    - average_order_value
-
-# Security configuration
-security:
-  api_key_header: X-API-Key
-  jwt:
-    secret_key: ${JWT_SECRET:change_me_in_production}
-    algorithm: HS256
-    access_token_expire_minutes: 60
-    refresh_token_expire_days: 7
-
-# Logging configuration
+# ============================================================
+# Logging Settings
+# ============================================================
 logging:
-  level: INFO
+  level: INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  file: logs/api.log
   format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-  date_format: "%Y-%m-%d %H:%M:%S"
-  file: logs/amazon_rec.log
-  max_size_mb: 10
+  max_size: 10485760  # 10MB in bytes
   backup_count: 5
+  console: true  # Whether to also log to console
 
-# Environment-specific settings (overridden by local_config.yaml)
-environment:
-  name: development
+# ============================================================
+# Metrics Settings
+# ============================================================
+metrics:
+  enable: true
+  port: 8001
+  path: /metrics
+  collection_interval: 15  # seconds between metric collections
+  include_model_metrics: true
+  include_api_metrics: true
+  include_system_metrics: true
+
+# ============================================================
+# Testing Settings
+# ============================================================
+testing:
+  test_user_ids:
+    - A12BCD34EFG56H
+    - B98FED76CBA54G
+    - C13579ACE24680
+  sample_size: 1000
+  random_seed: 42

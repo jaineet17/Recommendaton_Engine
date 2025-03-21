@@ -9,7 +9,7 @@ import queue
 import json
 from src.kafka.consumer import BaseConsumer
 from src.kafka.producer import get_producer
-from src.config.mlflow_config import MLFlowConfig
+from src.utils.config.mlflow_config import MLFlowConfig
 
 logger = logging.getLogger(__name__)
 

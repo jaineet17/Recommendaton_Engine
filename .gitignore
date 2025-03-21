@@ -19,45 +19,91 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
-
-# Unit test / coverage reports
+.pytest_cache/
+.coverage
 htmlcov/
 .tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
+.nox/
 .hypothesis/
+.pytest_cache/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+*.ipynb_checkpoints
 
-# Data
-data/raw/*
-data/processed/*
-data/interim/*
-!data/raw/.gitkeep
-!data/processed/.gitkeep
-!data/interim/.gitkeep
-
-# Models
-models/*
-!models/.gitkeep
-
-# Virtual environment
-.env
-.venv
-env/
+# Virtual Environment
 venv/
 ENV/
-
-# Local configuration
-config/local_config.yaml
+env/
+.venv/
 
 # IDE files
 .idea/
 .vscode/
 *.swp
-*.swo 
+*.swo
+.DS_Store
+
+# Project specific
+data/raw/*
+data/processed/*
+data/models/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/models/.gitkeep
+
+# Logs and local files
+*.log
+api.log
+api_debug.log
+*.log.*
+logs/
+metrics.json
+system_test.log
+load_test*.log
+pipeline.log
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Docker
+.dockerignore
+
+# Environment variables
+.env
+.env.local
+
+# Cache files
+.cache/
+__pycache__/
+.coverage
+
+# Models and large files 
+*.pkl
+*.h5
+*.pt
+*.bin
+# Keep .gitkeep files
+!.gitkeep
+
+# MLflow
+mlruns/
+mlflow/
+
+# Visual charts and outputs
+*.png
+*.jpg
+*.pdf
+*.svg
+
+# Generated docs
+docs/_build/
+docs/build/
+docs/generated/
+
+# Local configuration
+local_config.yaml
+local_*
+config/local_* 

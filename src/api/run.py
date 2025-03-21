@@ -1,48 +1,44 @@
 """
 Script to run the FastAPI server for the Amazon recommendation system.
+(Compatibility Module)
+
+This module has been replaced by run_api.py and is maintained for backward compatibility only.
 """
 
-import logging
+import warnings
 import os
 import sys
-
-import uvicorn
+from pathlib import Path
 
 # Add project root to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from src.data.database import load_config
-
-# Set up logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.StreamHandler(sys.stdout)
-    ]
+# Issue deprecation warning
+warnings.warn(
+    "This module has been replaced by run_api.py. "
+    "Please update your references accordingly.",
+    DeprecationWarning,
+    stacklevel=2
 )
 
-logger = logging.getLogger(__name__)
-
-# Load configuration
-config = load_config()
-api_config = config.get('api', {})
+# Import from the new location
+from src.api.run_api import run_api, main
 
 def run_api_server():
-    """Run the FastAPI server."""
-    host = api_config.get("host", "0.0.0.0")
-    port = api_config.get("port", 8000)
-    log_level = api_config.get("log_level", "info").lower()
+    """Run the FastAPI server for the recommendation system.
     
-    logger.info(f"Starting API server on {host}:{port}")
+    This is a compatibility wrapper around the main function from run_api.py
+    """
+    # Parse default arguments for backward compatibility
+    import argparse
+    parser = argparse.ArgumentParser(description="Run the API server")
+    parser.add_argument("--host", default="0.0.0.0", help="Host to bind to")
+    parser.add_argument("--port", type=int, default=8000, help="Port to bind to")
+    parser.add_argument("--log-level", default="info", help="Logging level")
+    args = parser.parse_args()
     
-    uvicorn.run(
-        "src.api.app:app",
-        host=host,
-        port=port,
-        log_level=log_level,
-        reload=api_config.get("debug", False)
-    )
+    # Call the main function which will run the API
+    return main()
 
 if __name__ == "__main__":
-    run_api_server() 
+    sys.exit(main()) 
